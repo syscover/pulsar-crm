@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Syscover\Pulsar\Models\Package;
+use Syscover\Admin\Models\Package;
 
 class CrmPackageSeeder extends Seeder
 {

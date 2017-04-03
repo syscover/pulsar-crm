@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Syscover\Pulsar\Models\AttachmentMime;
+use Syscover\Admin\Models\AttachmentMime;
 
 class CrmAttachmentMimeSeeder extends Seeder
 {

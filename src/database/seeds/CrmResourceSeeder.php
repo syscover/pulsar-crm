@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Syscover\Pulsar\Models\Resource;
+use Syscover\Admin\Models\Resource;
 
 class CrmResourceSeeder extends Seeder {
 
