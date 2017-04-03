@@ -30,9 +30,6 @@ class CrmCreateTableGroup extends Migration {
      */
     public function down()
     {
-        if (Schema::hasTable('group'))
-        {
-            Schema::drop('group');
-        }
+        Schema::dropIfExists('group');
     }
 }

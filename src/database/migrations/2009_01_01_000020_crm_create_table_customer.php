@@ -31,7 +31,7 @@ class CrmCreateTableCustomer extends Migration {
                 $table->string('surname')->nullable();
                 $table->string('avatar')->nullable();
                 $table->integer('birth_date')->nullable();
-                $table->string('email');
+                $table->string('email', 150);
                 $table->string('phone')->nullable();
                 $table->string('mobile')->nullable();
 
@@ -102,9 +102,6 @@ class CrmCreateTableCustomer extends Migration {
      */
     public function down()
     {
-        if (Schema::hasTable('customer'))
-        {
-            Schema::drop('customer');
-        }
+        Schema::dropIfExists('customer');
     }
 }
