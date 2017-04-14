@@ -9,13 +9,11 @@
         }
     ],
     "require": {
-        "php": ">=5.6.4",
-        "syscover/pulsar-core": "~3.0",
-        "syscover/pulsar-market": "~3.0"
+        "php": ">=5.6.4"
     },
     "autoload": {
         "psr-4": {
-            "Syscover\\Market\\": "src/Syscover/Market"
+            "Syscover\\Crm\\": "src/Syscover/Crm"
         }
     }
 }
