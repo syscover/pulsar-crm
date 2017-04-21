@@ -1,6 +1,7 @@
 <?php namespace Syscover\Crm\Models;
 
 use Syscover\Core\Models\CoreModel;
+use Syscover\Admin\Models\Lang;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Authenticatable;
@@ -9,7 +10,8 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Syscover\Crm\Notifications\ResetPassword as ResetPasswordNotification;
+
+//use Syscover\Crm\Notifications\ResetPassword as ResetPasswordNotification;
 
 /**
  * Class Customer
@@ -22,64 +24,15 @@ class Customer extends CoreModel implements AuthenticatableContract, Authorizabl
     use Notifiable;
 
 	protected $table        = 'customer';
-    protected $primaryKey   = 'id_301';
-    protected $suffix       = '301';
     public $timestamps      = false;
-    protected $fillable     = ['id_301', 'lang_id_301', 'group_id_301', 'date_301', 'company_301', 'tin_301', 'gender_id_301', 'treatment_id_301', 'state_id_301', 'name_301', 'surname_301', 'avatar_301', 'birth_date_301', 'email_301', 'phone_301', 'mobile_301', 'user_301', 'password_301', 'active_301', 'confirmed_301', 'country_id_301', 'territorial_area_1_id_301', 'territorial_area_2_id_301', 'territorial_area_3_id_301', 'cp_301', 'locality_301', 'address_301', 'latitude_301', 'longitude_301', 'field_group_id_301', 'data_301'];
-    protected $hidden       = ['password_301', 'remember_token_301'];
-    protected $maps         = [];
-    protected $relationMaps = [
-        'lang'      => \Syscover\Pulsar\Models\Lang::class,
-    ];
+    protected $fillable     = ['id', 'lang_id', 'group_id', 'date', 'company', 'tin', 'gender_id', 'treatment_id', 'state_id', 'name', 'surname', 'avatar', 'birth_date', 'email', 'phone', 'mobile', 'user', 'password', 'active', 'confirmed', 'country_id', 'territorial_area_1_id', 'territorial_area_2_id', 'territorial_area_3_id', 'cp', 'locality', 'address', 'latitude', 'longitude', 'field_group_id', 'data'];
+    protected $hidden       = ['password', 'remember_token'];
     private static $rules   = [
         'name'      => 'required|between:2,255',
-        'email'     => 'required|between:2,255|email|unique:009_301_customer,email_301',
-        'user'      => 'required|between:2,255|unique:009_301_customer,user_301',
+        'email'     => 'required|between:2,255|email|unique:customer,email',
+        'user'      => 'required|between:2,255|unique:customer,user',
         'password'  => 'required|between:4,50|same:repassword'
     ];
-
-    // custom properties, class tas for this customer
-    protected $classTax = null;
-
-    /**
-     * Dynamically access route parameters.
-     *
-     * @param  string  $key
-     * @return mixed
-     */
-    public function __get($key)
-    {
-        if($key === 'classTax' || $key === 'class_tax' || $key === 'class_tax_111')
-        {
-            return $this->classTax;
-        }
-
-        // check if property is mapped
-        if(isset($this->maps[$key]))
-        {
-            return $this->{$this->maps[$key]};
-        }
-
-        // call parent method in model
-        return parent::getAttribute($key);
-    }
-
-    /**
-     * Dynamically set attributes on the model.
-     *
-     * @param  string  $key
-     * @param  mixed  $value
-     * @return void
-     */
-    public function __set($key, $value)
-    {
-        if($key === 'classTax' || $key === 'class_tax' || $key === 'class_tax_111')
-        {
-            $this->classTax = $value;
-        }
-
-        parent::setAttribute($key, $value);
-    }
 
     public static function validate($data, $specialRules)
     {
@@ -92,28 +45,28 @@ class Customer extends CoreModel implements AuthenticatableContract, Authorizabl
 
     public function scopeBuilder($query)
     {
-        return $query->leftJoin('001_001_lang', '009_301_customer.lang_id_301', '=', '001_001_lang.id_001')
-            ->leftJoin('009_300_group', '009_301_customer.group_id_301', '=', '009_300_group.id_300');
+        return $query->leftJoin('lang', 'customer.lang_id', '=', 'lang.id')
+            ->leftJoin('group', 'customer.group_id', '=', 'group.id');
     }
 
     /**
      * Get Lang from user
      *
-     * @return \Syscover\Pulsar\Models\Lang
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function lang()
     {
-        return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_id');
+        return $this->belongsTo(Lang::class, 'lang_id');
     }
 
     /**
      * Get group from user
      *
-     * @return \Syscover\Crm\Models\Group
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getGroup()
+    public function group()
     {
-        return $this->belongsTo(Group::class, 'group_id_301');
+        return $this->belongsTo(Group::class, 'group_id');
     }
 
     /**
@@ -121,50 +74,13 @@ class Customer extends CoreModel implements AuthenticatableContract, Authorizabl
      *
      * @return mixed
      */
-    public function getAttachments()
+    public function attachments()
     {
         return $this->hasMany('Syscover\Pulsar\Models\Attachment', 'object_id_016')
             ->where('001_016_attachment.lang_id_016', base_lang()->id_001)
             ->where('001_016_attachment.resource_id_016', 'crm-customer')
             ->leftJoin('001_015_attachment_family', '001_016_attachment.family_id_016', '=', '001_015_attachment_family.id_015')
             ->orderBy('001_016_attachment.sorting_016');
-    }
-
-    /**
-     * Get name concatenating, name, surname and company name
-     *
-     * @return string
-     */
-    public function getIdentifierName()
-    {
-        $value  = '';
-        $flag   = false;
-
-        if(! empty($this->name_301))
-        {
-            $value .= $this->name_301;
-            $flag   = true;
-        }
-
-        if(! empty($this->surname_301))
-        {
-            if($flag)
-                $value .= ' ';
-            else
-                $flag   = true;
-
-            $value .= $this->surname_301;
-        }
-
-        if(! empty($this->company_301))
-        {
-            if($flag)
-                $value .= ' (' . $this->company_301 . ')';
-            else
-                $value .= $this->company_301;
-        }
-
-        return $value;
     }
 
     /**
@@ -215,7 +131,7 @@ class Customer extends CoreModel implements AuthenticatableContract, Authorizabl
      */
     public function getRememberTokenName()
     {
-        return 'remember_token_301';
+        return 'remember_token';
     }
 
     /**
@@ -236,7 +152,7 @@ class Customer extends CoreModel implements AuthenticatableContract, Authorizabl
      */
     public function sendPasswordResetNotification($token)
     {
-        $this->notify(new ResetPasswordNotification($token));
+        //$this->notify(new ResetPasswordNotification($token));
     }
 
     /**

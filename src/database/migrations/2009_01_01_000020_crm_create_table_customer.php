@@ -36,7 +36,7 @@ class CrmCreateTableCustomer extends Migration {
                 $table->string('mobile')->nullable();
 
                 // access
-                $table->string('user')->unique();
+                $table->string('user', 150);
                 $table->string('password');
                 $table->boolean('active');
                 $table->boolean('confirmed');
@@ -56,7 +56,10 @@ class CrmCreateTableCustomer extends Migration {
                 $table->integer('field_group_id')->unsigned()->nullable();
 
                 // data
-                $table->json('data')->nullable();
+                $table->text('data')->nullable();
+
+
+                $table->unique('user', 'ui01_customer');
 
                 $table->foreign('group_id', 'fk01_customer')
                     ->references('id')
