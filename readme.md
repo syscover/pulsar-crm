@@ -6,13 +6,9 @@
 
 Before install sycover/crm, you need install syscover/pulsar to load application base
 
-**1 - After install Laravel framework, insert on file composer.json, inside require object this value**
+**1 - After install Laravel framework, execute on console:**
 ```
-"syscover/crm": "~2.0"
-```
-and execute on console:
-```
-composer update
+omposer require syscover/pulsar
 ```
 
 **2 - Register service provider, on file config/app.php add to providers array**
@@ -64,7 +60,7 @@ Inside passwords array
 'crmPasswordBroker' => [
     'provider'  => 'crmCustomer',
     'email'     => 'pulsar::emails.password',
-    'table'     => '001_021_password_resets',
+    'table'     => 'password_resets',
     'expire'    => 60,
 ],
 ```
@@ -76,6 +72,13 @@ Use crm guard to get auth properties
 ```
 auth('crm')
 ```
+
+**9 - Add CRM middleware to nest protected routes**
+In app/Http/Kernel.php add to $routeMiddleware array
+```
+'pulsar.crm.auth' => \Syscover\Crm\Middleware\CrmAuthenticate::class,
+```
+You can nest protected routes under this middleware.
 
 
 ## Activate Package
