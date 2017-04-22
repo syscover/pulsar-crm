@@ -8,7 +8,7 @@ Before install sycover/crm, you need install syscover/pulsar to load application
 
 **1 - After install Laravel framework, execute on console:**
 ```
-omposer require syscover/pulsar
+composer require syscover/pulsar-crm
 ```
 
 **2 - Register service provider, on file config/app.php add to providers array**

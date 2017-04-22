@@ -34,6 +34,9 @@ class Customer extends CoreModel implements AuthenticatableContract, Authorizabl
         'password'  => 'required|between:4,50|same:repassword'
     ];
 
+    // custom properties
+    public $class_tax = null;
+
     public static function validate($data, $specialRules)
     {
         if(isset($specialRules['emailRule']) && $specialRules['emailRule']) static::$rules['email']     = 'required|between:2,255|email';
