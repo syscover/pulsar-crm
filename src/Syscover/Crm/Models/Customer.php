@@ -18,7 +18,10 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
  * @package Syscover\Crm\Models
  */
 
-class Customer extends CoreModel implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
+class Customer extends CoreModel implements
+    AuthenticatableContract,
+    AuthorizableContract,
+    CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword;
     use Notifiable;
