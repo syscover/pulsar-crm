@@ -83,7 +83,7 @@ class Customer extends CoreModel implements
     public function attachments()
     {
         return $this->hasMany('Syscover\Pulsar\Models\Attachment', 'object_id_016')
-            ->where('001_016_attachment.lang_id_016', base_lang()->id)
+            ->where('001_016_attachment.lang_id_016', base_lang())
             ->where('001_016_attachment.resource_id_016', 'crm-customer')
             ->leftJoin('001_015_attachment_family', '001_016_attachment.family_id_016', '=', '001_015_attachment_family.id_015')
             ->orderBy('001_016_attachment.sorting_016');
