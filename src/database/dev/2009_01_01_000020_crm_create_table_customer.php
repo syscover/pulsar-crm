@@ -56,7 +56,7 @@ class CrmCreateTableCustomer extends Migration {
                 $table->integer('field_group_id')->unsigned()->nullable();
 
                 // data
-                $table->text('data')->nullable();
+                $table->json('data')->nullable();
 
 
                 $table->unique('user', 'ui01_customer');

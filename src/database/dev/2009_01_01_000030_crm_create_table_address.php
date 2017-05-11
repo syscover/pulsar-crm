@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrmCreateTableCustomer extends Migration {
+class CrmCreateTableAddress extends Migration {
 
     /**
      * Run the migrations.
@@ -12,34 +12,20 @@ class CrmCreateTableCustomer extends Migration {
      */
     public function up()
     {
-        if (! Schema::hasTable('customer'))
+        if (! Schema::hasTable('address'))
         {
-            Schema::create('customer', function (Blueprint $table) {
+            Schema::create('address', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
 
                 $table->increments('id')->unsigned();
-                $table->string('lang_id', 2)->nullable();
-                $table->string('remember_token')->nullable();
-                $table->integer('group_id')->unsigned();
-                $table->integer('date');
+                $table->integer('customer_id')->unsigned();
+                $table->string('alias')->nullable();
                 $table->string('company')->nullable();
-                $table->string('tin')->nullable();
-                $table->tinyInteger('gender_id')->nullable();
-                $table->tinyInteger('treatment_id')->unsigned()->nullable();
-                $table->tinyInteger('state_id')->unsigned()->nullable();
                 $table->string('name')->nullable();
                 $table->string('surname')->nullable();
-                $table->string('avatar')->nullable();
-                $table->integer('birth_date')->nullable();
-                $table->string('email', 150);
+                $table->string('email', 150)->nullable();;
                 $table->string('phone')->nullable();
                 $table->string('mobile')->nullable();
-
-                // access
-                $table->string('user');
-                $table->string('password');
-                $table->boolean('active');
-                $table->boolean('confirmed');
 
                 // geolocation data
                 $table->string('country_id', 2)->nullable();
@@ -52,45 +38,32 @@ class CrmCreateTableCustomer extends Migration {
                 $table->string('latitude')->nullable();
                 $table->string('longitude')->nullable();
 
-                // customs fields
-                $table->integer('field_group_id')->unsigned()->nullable();
-
                 // data
-                $table->text('data')->nullable();
+                $table->json('data')->nullable();
 
-                $table->foreign('group_id', 'fk01_customer')
+                $table->foreign('customer_id', 'fk01_address')
                     ->references('id')
-                    ->on('group')
-                    ->onDelete('restrict')
+                    ->on('customer')
+                    ->onDelete('cascade')
                     ->onUpdate('cascade');
-                $table->foreign('country_id', 'fk02_customer')
+                $table->foreign('country_id', 'fk02_address')
                     ->references('id')
                     ->on('country')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
-                $table->foreign('territorial_area_1_id', 'fk03_customer')
+                $table->foreign('territorial_area_1_id', 'fk03_address')
                     ->references('id')
                     ->on('territorial_area_1')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
-                $table->foreign('territorial_area_2_id', 'fk04_customer')
+                $table->foreign('territorial_area_2_id', 'fk04_address')
                     ->references('id')
                     ->on('territorial_area_2')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
-                $table->foreign('territorial_area_3_id', 'fk05_customer')
+                $table->foreign('territorial_area_3_id', 'fk05_address')
                     ->references('id')
                     ->on('territorial_area_3')
-                    ->onDelete('restrict')
-                    ->onUpdate('cascade');
-                $table->foreign('lang_id', 'fk06_customer')
-                    ->references('id')
-                    ->on('lang')
-                    ->onDelete('restrict')
-                    ->onUpdate('cascade');
-                $table->foreign('field_group_id', 'fk07_customer')
-                    ->references('id')
-                    ->on('field_group')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
             });
@@ -104,6 +77,6 @@ class CrmCreateTableCustomer extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('customer');
+        Schema::dropIfExists('address');
     }
 }
