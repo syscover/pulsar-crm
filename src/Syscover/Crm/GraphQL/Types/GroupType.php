@@ -1,9 +1,7 @@
 <?php namespace Syscover\Crm\GraphQL\Types;
 
-use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
-use Syscover\Core\GraphQL\ScalarTypes\AnyType;
 
 class GroupType extends GraphQLType {
 
@@ -16,7 +14,7 @@ class GroupType extends GraphQLType {
     {
         return [
             'id' => [
-                'type' => Type::nonNull(app(AnyType::class)),
+                'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of group'
             ],
             'name' => [
@@ -24,9 +22,5 @@ class GroupType extends GraphQLType {
                 'description' => 'The name of group'
             ]
         ];
-    }
-
-    public function interfaces() {
-        return [GraphQL::type('CoreObjectInterface')];
     }
 }
