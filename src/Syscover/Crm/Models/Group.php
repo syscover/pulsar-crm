@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class Group extends CoreModel
 {
-	protected $table        = 'group';
+	protected $table        = 'crm_group';
     protected $fillable     = ['name'];
     public $timestamps      = false;
     protected $casts        = ['active' => 'boolean'];
