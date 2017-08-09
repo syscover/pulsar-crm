@@ -18,7 +18,7 @@ Syscover\Crm\CrmServiceProvider::class,
 
 **3 - Execute publish command**
 ```
-php artisan vendor:publish
+php artisan vendor:publish --provider="Syscover\Crm\CrmServiceProvider"
 ```
 
 **4 - Execute optimize command load new classes**

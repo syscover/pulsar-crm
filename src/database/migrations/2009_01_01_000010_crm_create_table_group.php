@@ -14,7 +14,7 @@ class CrmCreateTableGroup extends Migration {
     {
         if (! Schema::hasTable('crm_group'))
         {
-            Schema::create('group', function (Blueprint $table) {
+            Schema::create('crm_group', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 
                 $table->increments('id')->unsigned();
