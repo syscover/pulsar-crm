@@ -1,7 +1,8 @@
 <?php namespace Syscover\Crm\Models;
 
+use Syscover\Admin\Models\Attachment;
+use Syscover\Admin\Traits\Translatable;
 use Syscover\Core\Models\CoreModel;
-use Syscover\Admin\Models\Lang;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Authenticatable;
@@ -10,7 +11,6 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-
 //use Syscover\Crm\Notifications\ResetPassword as ResetPasswordNotification;
 
 /**
@@ -25,6 +25,7 @@ class Customer extends CoreModel implements
 {
     use Authenticatable, Authorizable, CanResetPassword;
     use Notifiable;
+    use Translatable;
 
 	protected $table        = 'customer';
     public $timestamps      = false;
@@ -51,18 +52,8 @@ class Customer extends CoreModel implements
 
     public function scopeBuilder($query)
     {
-        return $query->leftJoin('lang', 'customer.lang_id', '=', 'lang.id')
-            ->leftJoin('group', 'customer.group_id', '=', 'group.id');
-    }
-
-    /**
-     * Get Lang from user
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function lang()
-    {
-        return $this->belongsTo(Lang::class, 'lang_id');
+        return $query->leftJoin('lang', 'crm_customer.lang_id', '=', 'admin_lang.id')
+            ->leftJoin('crm_group', 'crm_customer.group_id', '=', 'crm_group.id');
     }
 
     /**
@@ -82,10 +73,10 @@ class Customer extends CoreModel implements
      */
     public function attachments()
     {
-        return $this->hasMany('Syscover\Pulsar\Models\Attachment', 'object_id_016')
-            ->where('001_016_attachment.lang_id_016', base_lang())
-            ->where('001_016_attachment.resource_id_016', 'crm-customer')
-            ->leftJoin('001_015_attachment_family', '001_016_attachment.family_id_016', '=', '001_015_attachment_family.id_015')
-            ->orderBy('001_016_attachment.sorting_016');
+        return $this->hasMany(Attachment::class, 'object_id')
+            ->where('admin_attachment.lang_id', base_lang())
+            ->where('admin_attachment.resource_id', 'crm-customer')
+            ->leftJoin('admin_attachment_family', 'admin_attachment.family_id', '=', 'admin_attachment_family.id')
+            ->orderBy('admin_attachment.sorting');
     }
 }
