@@ -1,5 +1,6 @@
 <?php namespace Syscover\Crm\Services;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Syscover\Crm\Models\Customer;
@@ -8,92 +9,95 @@ class CustomerService
 {
     /**
      * Function to create a customer
-     * @param   \Illuminate\Http\Request        $request
-     * @return  \Syscover\Crm\Models\Customer   $customer
+     * @param   array                           $object
+     * @return  \Syscover\Crm\Models\Customer
      * @throws  \Exception
      */
-    public static function createCustomer(Request $request)
+    public static function create($object)
     {
-        if(! $request->has('email'))
+        if(empty($object['email']))
             throw new \Exception('You have to define an email field to record a user');
 
-        $customer = Customer::create([
-            'lang_id'               => $request->input('lang_id'),
-            'group_id'              => $request->input('group_id'),
-            'date'                  => $request->has('date')? \DateTime::createFromFormat(config('pulsar.core.datePattern'), $request->input('date'))->getTimestamp() : date('U'),
-            'company'               => $request->input('company'),
-            'tin'                   => $request->input('tin'),
-            'gender_id'             => $request->input('gender'),
-            'treatment_id'          => $request->input('treatment_id'),
-            'state_id'              => $request->input('state_id'),
-            'name'                  => $request->input('name'),
-            'surname'               => $request->input('surname'),
-            'avatar'                => $request->input('avatar'),
-            'birth_date'            => $request->has('birthDate')? \DateTime::createFromFormat(config('pulsar.core.datePattern'), $request->input('birthDate'))->getTimestamp() : null,
-            'email'                 => strtolower($request->input('email')),
-            'phone'                 => $request->input('phone'),
-            'mobile'                => $request->input('mobile'),
-            'user'                  => $request->has('user')? $request->input('user') : strtolower($request->input('email')),
-            'password'              => $request->has('password')? Hash::make($request->input('password')) : Hash::make(Miscellaneous::randomStr(8)),
-            'active'                => $request->has('active'),
-            'confirmed'             => false,
-            'country_id'            => $request->input('country'),
-            'territorial_area_1_id' => $request->input('territorial_area_1_id'),
-            'territorial_area_2_id' => $request->input('territorial_area_2_id'),
-            'territorial_area_3_id' => $request->input('territorial_area_3_id'),
-            'cp'                    => $request->input('cp'),
-            'locality'              => $request->input('locality'),
-            'address'               => $request->input('address'),
-            'latitude'              => $request->input('latitude'),
-            'longitude'             => $request->input('longitude')
-        ]);
+        $object = collect($object);
 
-        return $customer;
+        return Customer::create([
+            'lang_id'               => $object->get('lang_id'),
+            'group_id'              => $object->get('group_id'),
+            'date'                  => $object->has('date')? (new Carbon($object->get('date'), config('app.timezone')))->toDateTimeString() : Carbon::now(config('app.timezone'))->toDateTimeString(),
+            'company'               => $object->get('company'),
+            'tin'                   => $object->get('tin'),
+            'gender_id'             => $object->get('gender'),
+            'treatment_id'          => $object->get('treatment_id'),
+            'state_id'              => $object->get('state_id'),
+            'name'                  => $object->get('name'),
+            'surname'               => $object->get('surname'),
+            'avatar'                => $object->get('avatar'),
+            'birth_date'            => $object->has('birthDate')? (new Carbon($object->get('date'), config('app.timezone')))->toDateString() : null,
+            'email'                 => strtolower($object['email']),
+            'phone'                 => $object->get('phone'),
+            'mobile'                => $object->get('mobile'),
+            'user'                  => $object->has('user')? $object->get('user') : strtolower($object->get('email')),
+            'password'              => $object->has('password')? Hash::make($object->get('password')) : Hash::make(Miscellaneous::randomStr(8)),
+            'active'                => $object->has('active'),
+            'country_id'            => $object->get('country'),
+            'territorial_area_1_id' => $object->get('territorial_area_1_id'),
+            'territorial_area_2_id' => $object->get('territorial_area_2_id'),
+            'territorial_area_3_id' => $object->get('territorial_area_3_id'),
+            'cp'                    => $object->get('cp'),
+            'locality'              => $object->get('locality'),
+            'address'               => $object->get('address'),
+            'latitude'              => $object->get('latitude'),
+            'longitude'             => $object->get('longitude')
+        ]);
     }
 
     /**
      * Function to update a customer
-     * @param   \Illuminate\Http\Request        $request
-     * @return  \Syscover\Crm\Models\Customer   $customer
+     * @param   array     $object
+     * @param   int       $id         old id of section
+     * @return  \Syscover\Crm\Models\Customer
      * @throws  \Exception
      */
-    public static function updateCustomer(Request $request)
+    public static function update($object, $id)
     {
-        if(! $request->has('id'))
+        if(empty($object['id']))
             throw new \Exception('You have to indicate a id customer');
 
-        if(! $request->has('email'))
+        if(empty($object['email']))
             throw new \Exception('You have to define an email field to record a user');
 
-        Customer::where('id', $request->input('id'))->update([
-            'lang_id'               => $request->input('lang_id'),
-            'group_id'              => $request->input('group_id'),
-            'company'               => $request->input('company'),
-            'tin'                   => $request->input('tin'),
-            'gender_id'             => $request->input('gender'),
-            'treatment_id'          => $request->input('treatment_id'),
-            'state_id'              => $request->input('state_id'),
-            'name'                  => $request->input('name'),
-            'surname'               => $request->input('surname'),
-            'avatar'                => $request->input('avatar'),
-            'birth_date'            => $request->has('birthDate')? \DateTime::createFromFormat(config('pulsar.core.datePattern'), $request->input('birthDate'))->getTimestamp() : null,
-            'email'                 => strtolower($request->input('email')),
-            'phone'                 => $request->input('phone'),
-            'mobile'                => $request->input('mobile'),
-            'user'                  => $request->has('user')? $request->input('user') : strtolower($request->input('email')),
-            'active'                => $request->has('active'),
-            'country_id'            => $request->input('country'),
-            'territorial_area_1_id' => $request->input('territorial_area_1_id'),
-            'territorial_area_2_id' => $request->input('territorial_area_2_id'),
-            'territorial_area_3_id' => $request->input('territorial_area_3_id'),
-            'cp'                    => $request->input('cp'),
-            'locality'              => $request->input('locality'),
-            'address'               => $request->input('address'),
-            'latitude'              => $request->input('latitude'),
-            'longitude'             => $request->input('longitude')
-        ]);
+        $object = collect($object);
 
-        $customer = Customer::builder()->find($request->input('id'));
+        Customer::where('id', $id)
+            ->update([
+                'lang_id'               => $object->get('lang_id'),
+                'group_id'              => $object->get('group_id'),
+                'company'               => $object->get('company'),
+                'tin'                   => $object->get('tin'),
+                'gender_id'             => $object->get('gender'),
+                'treatment_id'          => $object->get('treatment_id'),
+                'state_id'              => $object->get('state_id'),
+                'name'                  => $object->get('name'),
+                'surname'               => $object->get('surname'),
+                'avatar'                => $object->get('avatar'),
+                'birth_date'            => $object->has('birthDate')? (new Carbon($object->get('date'), config('app.timezone')))->toDateString() : null,
+                'email'                 => strtolower($object->get('email')),
+                'phone'                 => $object->get('phone'),
+                'mobile'                => $object->get('mobile'),
+                'user'                  => $object->has('user')? $object->get('user') : strtolower($object->get('email')),
+                'active'                => $object->has('active'),
+                'country_id'            => $object->get('country'),
+                'territorial_area_1_id' => $object->get('territorial_area_1_id'),
+                'territorial_area_2_id' => $object->get('territorial_area_2_id'),
+                'territorial_area_3_id' => $object->get('territorial_area_3_id'),
+                'cp'                    => $object->get('cp'),
+                'locality'              => $object->get('locality'),
+                'address'               => $object->get('address'),
+                'latitude'              => $object->get('latitude'),
+                'longitude'             => $object->get('longitude')
+            ]);
+
+        $customer = Customer::builder()->find($object->get('id'));
 
         if($customer === null)
             throw new \Exception('You have to indicate an id of a existing customer');
@@ -103,22 +107,29 @@ class CustomerService
 
     /**
      * Function updatePassword
-     * @param   \Illuminate\Http\Request        $request
+     * @param   \Illuminate\Http\Request        $object
      * @return  \Syscover\Crm\Models\Customer   $customer
      * @throws  \Exception
      */
-    public static function updatePassword(Request $request)
+    public static function updatePassword(Request $object)
     {
-        if(! $request->has('id'))
+        if(empty($object['id']))
             throw new \Exception('You have to indicate a id customer');
 
-        $customer = Customer::builder()->find($request->input('id'));
+        if(empty($object['password']))
+            throw new \Exception('You have to indicate a password');
+
+        // pass object to collection
+        $object = collect($object);
+
+        $customer = Customer::builder()->find($object->get('id'));
 
         if($customer === null)
             throw new \Exception('You have to indicate an id of a existing customer');
 
-        Customer::where('id', $request->input('id'))->update([
-            'password' => Hash::make($request->input('password')),
-        ]);
+        Customer::where('id', $object->get('id'))
+            ->update([
+                'password' => Hash::make($object->get('password')),
+            ]);
     }
 }

@@ -27,7 +27,7 @@ class Customer extends CoreModel implements
     use Notifiable;
     use Translatable;
 
-	protected $table        = 'customer';
+	protected $table        = 'crm_customer';
     public $timestamps      = false;
     protected $fillable     = ['id', 'lang_id', 'group_id', 'date', 'company', 'tin', 'gender_id', 'treatment_id', 'state_id', 'name', 'surname', 'avatar', 'birth_date', 'email', 'phone', 'mobile', 'user', 'password', 'active', 'confirmed', 'country_id', 'territorial_area_1_id', 'territorial_area_2_id', 'territorial_area_3_id', 'cp', 'locality', 'address', 'latitude', 'longitude', 'field_group_id', 'data'];
     protected $hidden       = ['password', 'remember_token'];
@@ -52,7 +52,7 @@ class Customer extends CoreModel implements
 
     public function scopeBuilder($query)
     {
-        return $query->leftJoin('lang', 'crm_customer.lang_id', '=', 'admin_lang.id')
+        return $query->leftJoin('admin_lang', 'crm_customer.lang_id', '=', 'admin_lang.id')
             ->leftJoin('crm_group', 'crm_customer.group_id', '=', 'crm_group.id');
     }
 

@@ -49,27 +49,27 @@ class CrmCreateTableAddress extends Migration {
 
                 $table->foreign('customer_id', 'fk01_crm_address')
                     ->references('id')
-                    ->on('customer')
+                    ->on('crm_customer')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
                 $table->foreign('country_id', 'fk02_crm_address')
                     ->references('id')
-                    ->on('country')
+                    ->on('admin_country')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
                 $table->foreign('territorial_area_1_id', 'fk03_crm_address')
                     ->references('id')
-                    ->on('territorial_area_1')
+                    ->on('admin_territorial_area_1')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
                 $table->foreign('territorial_area_2_id', 'fk04_crm_address')
                     ->references('id')
-                    ->on('territorial_area_2')
+                    ->on('admin_territorial_area_2')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
                 $table->foreign('territorial_area_3_id', 'fk05_crm_address')
                     ->references('id')
-                    ->on('territorial_area_3')
+                    ->on('admin_territorial_area_3')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
             });

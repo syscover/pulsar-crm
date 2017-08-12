@@ -21,7 +21,7 @@ class CrmCreateTableCustomer extends Migration {
                 $table->string('lang_id', 2)->nullable();
                 $table->string('remember_token')->nullable();
                 $table->integer('group_id')->unsigned();
-                $table->integer('date');
+                $table->timestamp('date');
                 $table->string('company')->nullable();
                 $table->string('tin')->nullable();
                 $table->tinyInteger('gender_id')->nullable();
@@ -30,7 +30,7 @@ class CrmCreateTableCustomer extends Migration {
                 $table->string('name')->nullable();
                 $table->string('surname')->nullable();
                 $table->string('avatar')->nullable();
-                $table->integer('birth_date')->nullable();
+                $table->date('birth_date')->nullable();
                 $table->string('email', 150);
                 $table->string('phone')->nullable();
                 $table->string('mobile')->nullable();
@@ -38,8 +38,8 @@ class CrmCreateTableCustomer extends Migration {
                 // access
                 $table->string('user', 150);
                 $table->string('password');
-                $table->boolean('active');
-                $table->boolean('confirmed');
+                $table->boolean('active')->default(true);
+                $table->boolean('confirmed')->default(false);
 
                 // geolocation data
                 $table->string('country_id', 2)->nullable();
@@ -63,37 +63,37 @@ class CrmCreateTableCustomer extends Migration {
 
                 $table->foreign('group_id', 'fk01_crm_customer')
                     ->references('id')
-                    ->on('group')
+                    ->on('crm_group')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
                 $table->foreign('country_id', 'fk02_crm_customer')
                     ->references('id')
-                    ->on('country')
+                    ->on('admin_country')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
                 $table->foreign('territorial_area_1_id', 'fk03_crm_customer')
                     ->references('id')
-                    ->on('territorial_area_1')
+                    ->on('admin_territorial_area_1')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
                 $table->foreign('territorial_area_2_id', 'fk04_crm_customer')
                     ->references('id')
-                    ->on('territorial_area_2')
+                    ->on('admin_territorial_area_2')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
                 $table->foreign('territorial_area_3_id', 'fk05_crm_customer')
                     ->references('id')
-                    ->on('territorial_area_3')
+                    ->on('admin_territorial_area_3')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
                 $table->foreign('lang_id', 'fk06_crm_customer')
                     ->references('id')
-                    ->on('lang')
+                    ->on('admin_lang')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
                 $table->foreign('field_group_id', 'fk07_crm_customer')
                     ->references('id')
-                    ->on('field_group')
+                    ->on('admin_field_group')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
             });
