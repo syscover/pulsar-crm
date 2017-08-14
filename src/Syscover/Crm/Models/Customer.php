@@ -53,7 +53,8 @@ class Customer extends CoreModel implements
     public function scopeBuilder($query)
     {
         return $query->leftJoin('admin_lang', 'crm_customer.lang_id', '=', 'admin_lang.id')
-            ->leftJoin('crm_group', 'crm_customer.group_id', '=', 'crm_group.id');
+            ->leftJoin('crm_group', 'crm_customer.group_id', '=', 'crm_group.id')
+            ->select('admin_lang.*', 'crm_group.*', 'crm_customer.*', 'admin_lang.name as lang_name', 'crm_group.name as group_name', 'crm_customer.name as customer_name');
     }
 
     /**
