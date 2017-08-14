@@ -26,6 +26,10 @@ class CustomerType extends GraphQLType
                 'type' => Type::nonNull(Type::int()),
                 'description' => 'Group that belong this customer'
             ],
+            'group' => [
+                'type' => Type::nonNull(GraphQL::type('CrmGroup')),
+                'description' => 'Group that belong this customer'
+            ],
             'date' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'Registration date'

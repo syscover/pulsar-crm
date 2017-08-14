@@ -18,12 +18,11 @@ class CrmCreateTableAddress extends Migration {
                 $table->engine = 'InnoDB';
 
                 $table->increments('id')->unsigned();
-                $table->integer('customer_id')->unsigned();
-
-                $table->smallInteger('type_id')->unsigned();
+                $table->integer('type_id')->unsigned();
                 // type:
                 // 1 - billing address
                 // 2 - shipping address
+                $table->integer('customer_id')->unsigned();
 
                 $table->string('alias')->nullable();
                 $table->string('company')->nullable();
@@ -47,27 +46,32 @@ class CrmCreateTableAddress extends Migration {
                 // data
                 $table->json('data')->nullable();
 
-                $table->foreign('customer_id', 'fk01_crm_address')
+                $table->foreign('type_id', 'fk01_crm_address')
+                    ->references('id')
+                    ->on('crm_type')
+                    ->onDelete('restrict')
+                    ->onUpdate('cascade');
+                $table->foreign('customer_id', 'fk02_crm_address')
                     ->references('id')
                     ->on('crm_customer')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
-                $table->foreign('country_id', 'fk02_crm_address')
+                $table->foreign('country_id', 'fk03_crm_address')
                     ->references('id')
                     ->on('admin_country')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
-                $table->foreign('territorial_area_1_id', 'fk03_crm_address')
+                $table->foreign('territorial_area_1_id', 'fk04_crm_address')
                     ->references('id')
                     ->on('admin_territorial_area_1')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
-                $table->foreign('territorial_area_2_id', 'fk04_crm_address')
+                $table->foreign('territorial_area_2_id', 'fk05_crm_address')
                     ->references('id')
                     ->on('admin_territorial_area_2')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
-                $table->foreign('territorial_area_3_id', 'fk05_crm_address')
+                $table->foreign('territorial_area_3_id', 'fk06_crm_address')
                     ->references('id')
                     ->on('admin_territorial_area_3')
                     ->onDelete('restrict')

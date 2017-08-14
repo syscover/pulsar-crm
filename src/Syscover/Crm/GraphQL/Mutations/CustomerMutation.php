@@ -11,7 +11,7 @@ class CustomerMutation extends Mutation
 {
     public function type()
     {
-        return GraphQL::type('CrmGroup');
+        return GraphQL::type('CrmCustomer');
     }
 
     public function args()
@@ -25,10 +25,10 @@ class CustomerMutation extends Mutation
     }
 }
 
-class AddCustomerMutation extends GroupMutation
+class AddCustomerMutation extends CustomerMutation
 {
     protected $attributes = [
-        'name'          => 'addGroup',
+        'name'          => 'addCustomer',
         'description'   => 'Add new group'
     ];
 
@@ -38,10 +38,10 @@ class AddCustomerMutation extends GroupMutation
     }
 }
 
-class UpdateCustomerMutation extends GroupMutation
+class UpdateCustomerMutation extends CustomerMutation
 {
     protected $attributes = [
-        'name' => 'updateGroup',
+        'name' => 'updateCustomer',
         'description' => 'Update group'
     ];
 
@@ -51,10 +51,10 @@ class UpdateCustomerMutation extends GroupMutation
     }
 }
 
-class DeleteCustomerMutation extends GroupMutation
+class DeleteCustomerMutation extends CustomerMutation
 {
     protected $attributes = [
-        'name' => 'deleteGroup',
+        'name' => 'deleteCustomer',
         'description' => 'Delete group'
     ];
 

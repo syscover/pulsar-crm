@@ -28,7 +28,7 @@ class CustomerInput extends GraphQLType
                 'description' => 'Group that belong this customer'
             ],
             'date' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
                 'description' => 'Registration date'
             ],
             'company' => [
@@ -86,7 +86,7 @@ class CustomerInput extends GraphQLType
                 'description' => 'Username of user'
             ],
             'password' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
                 'description' => 'Password of user'
             ],
             'active' => [
@@ -94,7 +94,7 @@ class CustomerInput extends GraphQLType
                 'description' => 'check if customer is active'
             ],
             'confirmed' => [
-                'type' => Type::nonNull(Type::boolean()),
+                'type' => Type::boolean(),
                 'description' => 'check if customer is confirmed'
             ],
 

@@ -31,15 +31,16 @@ class Customer extends CoreModel implements
     public $timestamps      = false;
     protected $fillable     = ['id', 'lang_id', 'group_id', 'date', 'company', 'tin', 'gender_id', 'treatment_id', 'state_id', 'name', 'surname', 'avatar', 'birth_date', 'email', 'phone', 'mobile', 'user', 'password', 'active', 'confirmed', 'country_id', 'territorial_area_1_id', 'territorial_area_2_id', 'territorial_area_3_id', 'cp', 'locality', 'address', 'latitude', 'longitude', 'field_group_id', 'data'];
     protected $hidden       = ['password', 'remember_token'];
+    public $with            = ['group'];
+
+    public $class_tax = null; // custom properties
+
     private static $rules   = [
         'name'      => 'required|between:2,255',
         'email'     => 'required|between:2,255|email|unique:customer,email',
         'user'      => 'required|between:2,255|unique:customer,user',
         'password'  => 'required|between:4,50|same:repassword'
     ];
-
-    // custom properties
-    public $class_tax = null;
 
     public static function validate($data, $specialRules)
     {
@@ -57,27 +58,8 @@ class Customer extends CoreModel implements
             ->select('admin_lang.*', 'crm_group.*', 'crm_customer.*', 'admin_lang.name as lang_name', 'crm_group.name as group_name', 'crm_customer.name as customer_name');
     }
 
-    /**
-     * Get group from user
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function group()
     {
         return $this->belongsTo(Group::class, 'group_id');
-    }
-
-    /**
-     * Get attachments from customer
-     *
-     * @return mixed
-     */
-    public function attachments()
-    {
-        return $this->hasMany(Attachment::class, 'object_id')
-            ->where('admin_attachment.lang_id', base_lang())
-            ->where('admin_attachment.resource_id', 'crm-customer')
-            ->leftJoin('admin_attachment_family', 'admin_attachment.family_id', '=', 'admin_attachment_family.id')
-            ->orderBy('admin_attachment.sorting');
     }
 }

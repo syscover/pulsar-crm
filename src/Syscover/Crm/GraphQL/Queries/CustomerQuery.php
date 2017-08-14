@@ -4,7 +4,7 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
 use Syscover\Core\Services\SQLService;
-use Syscover\Crm\Models\Group;
+use Syscover\Crm\Models\Customer;
 
 class CustomerQuery extends Query
 {
@@ -15,7 +15,7 @@ class CustomerQuery extends Query
 
     public function type()
     {
-        return GraphQL::type('CrmGroup');
+        return GraphQL::type('CrmCustomer');
     }
 
     public function args()
@@ -31,7 +31,7 @@ class CustomerQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(Group::builder(), $args['sql']);
+        $query = SQLService::getQueryFiltered(Customer::builder(), $args['sql']);
 
         return $query->first();
     }
