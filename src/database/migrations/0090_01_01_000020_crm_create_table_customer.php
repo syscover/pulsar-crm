@@ -58,6 +58,8 @@ class CrmCreateTableCustomer extends Migration {
                 // data
                 $table->json('data')->nullable();
 
+                $table->timestamps();
+                $table->softDeletes();
 
                 $table->unique('user', 'ui01_crm_customer');
 

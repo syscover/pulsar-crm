@@ -1,6 +1,5 @@
 <?php namespace Syscover\Crm\Models;
 
-use Syscover\Admin\Models\Attachment;
 use Syscover\Admin\Traits\Translatable;
 use Syscover\Core\Models\CoreModel;
 use Illuminate\Support\Facades\Validator;
@@ -28,9 +27,12 @@ class Customer extends CoreModel implements
     use Translatable;
 
 	protected $table        = 'crm_customer';
-    public $timestamps      = false;
     protected $fillable     = ['id', 'lang_id', 'group_id', 'date', 'company', 'tin', 'gender_id', 'treatment_id', 'state_id', 'name', 'surname', 'avatar', 'birth_date', 'email', 'phone', 'mobile', 'user', 'password', 'active', 'confirmed', 'country_id', 'territorial_area_1_id', 'territorial_area_2_id', 'territorial_area_3_id', 'cp', 'locality', 'address', 'latitude', 'longitude', 'field_group_id', 'data'];
     protected $hidden       = ['password', 'remember_token'];
+    protected $casts        = [
+        'active'    => 'boolean',
+        'data'      => 'array'
+    ];
     public $with            = ['group'];
 
     public $class_tax = null; // custom properties

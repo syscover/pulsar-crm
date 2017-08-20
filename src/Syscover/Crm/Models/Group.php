@@ -12,7 +12,6 @@ class Group extends CoreModel
 {
 	protected $table        = 'crm_group';
     protected $fillable     = ['name'];
-    public $timestamps      = false;
     protected $casts        = ['active' => 'boolean'];
     private static $rules   = [
         'name'  => 'required|between:2,50'
