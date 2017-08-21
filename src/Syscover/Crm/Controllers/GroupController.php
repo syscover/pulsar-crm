@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Syscover\Core\Controllers\CoreController;
 use Syscover\Crm\Models\Group;
+use Syscover\Crm\Services\GroupService;
 
 class GroupController extends CoreController
 {
@@ -16,12 +17,8 @@ class GroupController extends CoreController
      */
     public function store(Request $request)
     {
-        $action = Group::create([
-            'name'  => $request->input('name')
-        ]);
-
         $response['status'] = "success";
-        $response['data']   = $action;
+        $response['data']   = GroupService::create($request->all());
 
         return response()->json($response);
     }
@@ -35,14 +32,8 @@ class GroupController extends CoreController
      */
     public function update(Request $request, $id)
     {
-        Group::where('id', $id)->update([
-            'name'  => $request->input('name')
-        ]);
-
-        $action = Group::find($request->input('id'));
-
         $response['status'] = "success";
-        $response['data']   = $action;
+        $response['data']   = GroupService::update($request->all(), $id);
 
         return response()->json($response);
     }

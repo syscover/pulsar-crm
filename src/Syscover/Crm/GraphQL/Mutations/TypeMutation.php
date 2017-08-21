@@ -4,14 +4,14 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Mutation;
 use Syscover\Core\Services\SQLService;
-use Syscover\Crm\Models\Group;
-use Syscover\Crm\Services\GroupService;
+use Syscover\Crm\Models\Type as CrmModelType;
+use Syscover\Crm\Services\TypeService;
 
-class GroupMutation extends Mutation
+class TypeMutation extends Mutation
 {
     public function type()
     {
-        return GraphQL::type('CrmGroup');
+        return GraphQL::type('CrmType');
     }
 
     public function args()
@@ -19,43 +19,43 @@ class GroupMutation extends Mutation
         return [
             'object' => [
                 'name' => 'object',
-                'type' => Type::nonNull(GraphQL::type('CrmGroupInput'))
+                'type' => Type::nonNull(GraphQL::type('CrmTypeInput'))
             ],
         ];
     }
 }
 
-class AddGroupMutation extends GroupMutation
+class AddTypeMutation extends TypeMutation
 {
     protected $attributes = [
-        'name'          => 'addGroup',
-        'description'   => 'Add new group'
+        'name'          => 'addType',
+        'description'   => 'Add new type'
     ];
 
     public function resolve($root, $args)
     {
-        return GroupService::create($args['object']);
+        return TypeService::create($args['object']);
     }
 }
 
-class UpdateGroupMutation extends GroupMutation
+class UpdateTypeMutation extends TypeMutation
 {
     protected $attributes = [
-        'name' => 'updateGroup',
-        'description' => 'Update group'
+        'name' => 'updateType',
+        'description' => 'Update type'
     ];
 
     public function resolve($root, $args)
     {
-        return GroupService::update($args['object'], $args['object']['id']);
+        return TypeService::update($args['object'], $args['object']['id']);
     }
 }
 
-class DeleteGroupMutation extends GroupMutation
+class DeleteTypeMutation extends TypeMutation
 {
     protected $attributes = [
-        'name' => 'deleteGroup',
-        'description' => 'Delete group'
+        'name' => 'deleteType',
+        'description' => 'Delete type'
     ];
 
     public function args()
@@ -70,7 +70,7 @@ class DeleteGroupMutation extends GroupMutation
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args['id'], Group::class);
+        $object = SQLService::destroyRecord($args['id'], CrmModelType::class);
 
         return $object;
     }

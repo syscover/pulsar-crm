@@ -4,16 +4,16 @@ use Syscover\Core\Models\CoreModel;
 use Illuminate\Support\Facades\Validator;
 
 /**
- * Class Group
+ * Class Type
  * @package Syscover\Crm\Models
  */
 
-class Group extends CoreModel
+class Type extends CoreModel
 {
-	protected $table        = 'crm_group';
+	protected $table        = 'crm_type';
     protected $fillable     = ['name'];
     private static $rules   = [
-        'name'  => 'required|between:2,50'
+        'name'  => 'required|between:2,255'
     ];
         
     public static function validate($data, $specialRules = [])

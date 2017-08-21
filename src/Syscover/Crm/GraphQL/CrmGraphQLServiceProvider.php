@@ -13,6 +13,10 @@ class CrmGraphQLServiceProvider
         // CUSTOMER
         GraphQL::addType(\Syscover\Crm\GraphQL\Types\CustomerType::class, 'CrmCustomer');
         GraphQL::addType(\Syscover\Crm\GraphQL\Inputs\CustomerInput::class, 'CrmCustomerInput');
+
+        // TYPE
+        GraphQL::addType(\Syscover\Crm\GraphQL\Types\TypeType::class, 'CrmType');
+        GraphQL::addType(\Syscover\Crm\GraphQL\Inputs\TypeInput::class, 'CrmTypeInput');
     }
 
     public static function bootGraphQLSchema()
@@ -28,6 +32,11 @@ class CrmGraphQLServiceProvider
                 'crmCustomersPagination'    => \Syscover\Crm\GraphQL\Queries\CustomersPaginationQuery::class,
                 'crmCustomers'              => \Syscover\Crm\GraphQL\Queries\CustomersQuery::class,
                 'crmCustomer'               => \Syscover\Crm\GraphQL\Queries\CustomerQuery::class,
+
+                // TYPE
+                'crmTypesPagination'        => \Syscover\Crm\GraphQL\Queries\TypesPaginationQuery::class,
+                'crmTypes'                  => \Syscover\Crm\GraphQL\Queries\TypesQuery::class,
+                'crmType'                   => \Syscover\Crm\GraphQL\Queries\TypeQuery::class,
             ],
             'mutation' => [
                 // GROUP
@@ -39,6 +48,11 @@ class CrmGraphQLServiceProvider
                 'crmAddCustomer'            => \Syscover\Crm\GraphQL\Mutations\AddCustomerMutation::class,
                 'crmUpdateCustomer'         => \Syscover\Crm\GraphQL\Mutations\UpdateCustomerMutation::class,
                 'crmDeleteCustomer'         => \Syscover\Crm\GraphQL\Mutations\DeleteCustomerMutation::class,
+
+                // TYPE
+                'crmAddType'                => \Syscover\Crm\GraphQL\Mutations\AddTypeMutation::class,
+                'crmUpdateType'             => \Syscover\Crm\GraphQL\Mutations\UpdateTypeMutation::class,
+                'crmDeleteType'             => \Syscover\Crm\GraphQL\Mutations\DeleteTypeMutation::class,
             ]
         ]));
     }
