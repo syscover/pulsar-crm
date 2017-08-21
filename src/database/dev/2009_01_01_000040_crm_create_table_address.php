@@ -46,6 +46,9 @@ class CrmCreateTableAddress extends Migration {
                 // data
                 $table->json('data')->nullable();
 
+                $table->timestamps();
+                $table->softDeletes();
+
                 $table->foreign('type_id', 'fk01_crm_address')
                     ->references('id')
                     ->on('crm_type')
