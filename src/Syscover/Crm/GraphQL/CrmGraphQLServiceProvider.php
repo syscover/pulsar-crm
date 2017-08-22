@@ -43,9 +43,9 @@ class CrmGraphQLServiceProvider
                 'crmType'                   => \Syscover\Crm\GraphQL\Queries\TypeQuery::class,
 
                 // ADDRESS
-                'crmAddressesPagination'    => \Syscover\Crm\GraphQL\Queries\TypesPaginationQuery::class,
-                'crmAddresses'              => \Syscover\Crm\GraphQL\Queries\TypesQuery::class,
-                'crmAddress'                => \Syscover\Crm\GraphQL\Queries\TypeQuery::class,
+                'crmAddressesPagination'    => \Syscover\Crm\GraphQL\Queries\AddressesPaginationQuery::class,
+                'crmAddresses'              => \Syscover\Crm\GraphQL\Queries\AddressesQuery::class,
+                'crmAddress'                => \Syscover\Crm\GraphQL\Queries\AddressQuery::class,
             ],
             'mutation' => [
                 // GROUP

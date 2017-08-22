@@ -19,6 +19,7 @@ class Address extends CoreModel
         'type_id'  => 'required',
         'customer_id'  => 'required'
     ];
+    public $with = ['type'];
         
     public static function validate($data, $specialRules = [])
     {
@@ -28,5 +29,10 @@ class Address extends CoreModel
     public function scopeBuilder($query)
     {
         return $query;
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class, 'type_id');
     }
 }
