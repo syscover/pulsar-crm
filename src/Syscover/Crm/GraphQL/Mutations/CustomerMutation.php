@@ -29,7 +29,7 @@ class AddCustomerMutation extends CustomerMutation
 {
     protected $attributes = [
         'name'          => 'addCustomer',
-        'description'   => 'Add new group'
+        'description'   => 'Add new customer'
     ];
 
     public function resolve($root, $args)
@@ -42,7 +42,7 @@ class UpdateCustomerMutation extends CustomerMutation
 {
     protected $attributes = [
         'name' => 'updateCustomer',
-        'description' => 'Update group'
+        'description' => 'Update customer'
     ];
 
     public function resolve($root, $args)
@@ -55,7 +55,7 @@ class DeleteCustomerMutation extends CustomerMutation
 {
     protected $attributes = [
         'name' => 'deleteCustomer',
-        'description' => 'Delete group'
+        'description' => 'Delete customer'
     ];
 
     public function args()

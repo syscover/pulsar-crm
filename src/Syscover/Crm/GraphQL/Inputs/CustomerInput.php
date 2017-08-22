@@ -16,7 +16,7 @@ class CustomerInput extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::int()),
+                'type' => Type::int(),
                 'description' => 'The id of customer'
             ],
             'lang_id' => [

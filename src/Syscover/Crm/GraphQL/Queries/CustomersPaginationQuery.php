@@ -6,7 +6,6 @@ use Folklore\GraphQL\Support\Query;
 use Syscover\Core\Services\SQLService;
 use Syscover\Crm\Models\Customer;
 
-
 class CustomersPaginationQuery extends Query
 {
     protected $attributes = [
