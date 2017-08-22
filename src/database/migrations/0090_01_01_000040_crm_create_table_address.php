@@ -18,14 +18,15 @@ class CrmCreateTableAddress extends Migration {
                 $table->engine = 'InnoDB';
 
                 $table->increments('id')->unsigned();
-                $table->integer('type_id')->unsigned();
                 // type:
                 // 1 - billing address
                 // 2 - shipping address
+                $table->integer('type_id')->unsigned();
                 $table->integer('customer_id')->unsigned();
-
                 $table->string('alias')->nullable();
+                $table->string('lang_id', 2)->nullable();
                 $table->string('company')->nullable();
+                $table->string('tin')->nullable();
                 $table->string('name')->nullable();
                 $table->string('surname')->nullable();
                 $table->string('email', 150)->nullable();;

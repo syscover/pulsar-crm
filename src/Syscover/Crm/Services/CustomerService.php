@@ -54,7 +54,7 @@ class CustomerService
     /**
      * Function to update a customer
      * @param   array     $object
-     * @param   int       $id         old id of section
+     * @param   int       $id         old id of customer
      * @return  \Syscover\Crm\Models\Customer
      * @throws  \Exception
      */
