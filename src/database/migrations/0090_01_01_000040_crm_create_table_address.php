@@ -44,6 +44,8 @@ class CrmCreateTableAddress extends Migration {
                 $table->string('latitude')->nullable();
                 $table->string('longitude')->nullable();
 
+                $table->boolean('favorite')->default(false);
+
                 // data
                 $table->json('data')->nullable();
 
