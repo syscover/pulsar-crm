@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-//use Syscover\Crm\Notifications\ResetPassword as ResetPasswordNotification;
+use App\Http\Notifications\ResetPassword as ResetPasswordNotification;
 
 /**
  * Class Customer
@@ -33,7 +33,10 @@ class Customer extends CoreModel implements
         'active'    => 'boolean',
         'data'      => 'array'
     ];
-    public $with            = ['group'];
+    public $with            = [
+        'group',
+        'addresses'
+    ];
 
     public $class_tax = null; // custom properties
 
@@ -63,5 +66,20 @@ class Customer extends CoreModel implements
     public function group()
     {
         return $this->belongsTo(Group::class, 'group_id');
+    }
+
+    public function addresses(){
+        return $this->hasMany(Address::class, 'customer_id');
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 }
