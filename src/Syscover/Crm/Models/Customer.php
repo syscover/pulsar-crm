@@ -68,7 +68,8 @@ class Customer extends CoreModel implements
         return $this->belongsTo(Group::class, 'group_id');
     }
 
-    public function addresses(){
+    public function addresses()
+    {
         return $this->hasMany(Address::class, 'customer_id');
     }
 
