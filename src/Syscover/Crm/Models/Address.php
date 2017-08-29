@@ -1,5 +1,6 @@
 <?php namespace Syscover\Crm\Models;
 
+use Syscover\Admin\Models\Country;
 use Syscover\Core\Models\CoreModel;
 use Illuminate\Support\Facades\Validator;
 
@@ -34,5 +35,10 @@ class Address extends CoreModel
     public function type()
     {
         return $this->belongsTo(Type::class, 'type_id');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
     }
 }
