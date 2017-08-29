@@ -56,7 +56,8 @@ class AddressService
                 'locality'              => $object->get('locality'),
                 'address'               => $object->get('address'),
                 'latitude'              => $object->get('latitude'),
-                'longitude'             => $object->get('longitude')
+                'longitude'             => $object->get('longitude'),
+                'favorite'              => $object->has('favorite'),
             ]);
 
         return Address::builder()->find($id);
