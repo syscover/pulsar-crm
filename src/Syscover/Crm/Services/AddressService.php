@@ -15,8 +15,8 @@ class AddressService
         if(isset($object['email']))
             $object['email'] = strtolower($object['email']);
 
-        if($object->has('favorite'))
-            Address::where('type_id', $object->get('type_id'))
+        if(isset($object['favorite']))
+            Address::where('type_id', $object['type_id'])
                 ->update(['favorite' => false]);
 
         return Address::create($object);
