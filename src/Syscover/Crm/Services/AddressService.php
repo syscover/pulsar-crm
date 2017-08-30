@@ -15,6 +15,10 @@ class AddressService
         if(isset($object['email']))
             $object['email'] = strtolower($object['email']);
 
+        if($object->has('favorite'))
+            Address::where('type_id', $object->get('type_id'))
+                ->update(['favorite' => false]);
+
         return Address::create($object);
     }
 
@@ -34,6 +38,10 @@ class AddressService
             $object['email'] = strtolower($object['email']);
 
         $object = collect($object);
+
+        if($object->has('favorite'))
+            Address::where('type_id', $object->get('type_id'))
+                ->update(['favorite' => false]);
 
         Address::where('id', $id)
             ->update([
