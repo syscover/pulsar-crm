@@ -18,12 +18,5 @@
         "classmap": [
             "src/Syscover/Crm"
         ]
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Syscover\\Crm\\CrmServiceProvider"
-            ]
-        }
     }
 }
