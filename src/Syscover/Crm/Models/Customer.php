@@ -73,6 +73,12 @@ class Customer extends CoreModel implements
         return $this->hasMany(Address::class, 'customer_id');
     }
 
+    public function orders()
+    {
+        // don't use object because it can be used in crm module without market module
+        return $this->hasMany('Syscover\Market\Models\Order', 'customer_id');
+    }
+
     /**
      * Send the password reset notification.
      *
