@@ -25,7 +25,7 @@ class CrmServiceProvider extends ServiceProvider
 
         // register config files
         $this->publishes([
-            __DIR__ . '/../../config/pulsar.crm.php' => config_path('pulsar.crm.php'),
+            __DIR__ . '/../../config/pulsar-crm.php' => config_path('pulsar-crm.php'),
         ]);
 
         // register GraphQL types and schema
