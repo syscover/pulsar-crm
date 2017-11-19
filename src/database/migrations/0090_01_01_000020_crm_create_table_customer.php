@@ -17,7 +17,7 @@ class CrmCreateTableCustomer extends Migration {
             Schema::create('crm_customer', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
 
-                $table->increments('id')->unsigned();
+                $table->increments('id');
                 $table->string('lang_id', 2)->nullable();
                 $table->string('remember_token')->nullable();
                 $table->integer('group_id')->unsigned();

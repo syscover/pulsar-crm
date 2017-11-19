@@ -17,7 +17,7 @@ class CrmCreateTableAddress extends Migration {
             Schema::create('crm_address', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
 
-                $table->increments('id')->unsigned();
+                $table->increments('id');
                 // type:
                 // 1 - billing address
                 // 2 - shipping address
