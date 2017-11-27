@@ -23,6 +23,46 @@ class AddressService
     }
 
     /**
+     * Function to create a address
+     * @param   array $objects
+     * @return  boolean
+     */
+    public static function insert($objects)
+    {
+        $formated = [];
+        foreach($objects as $object)
+        {
+            $object     = collect($object);
+
+            $formated[] = [
+                'type_id'               => $object->get('type_id'),
+                'customer_id'           => $object->get('customer_id'),
+                'alias'                 => $object->get('alias'),
+                'lang_id'               => $object->get('lang_id'),
+                'company'               => $object->get('company'),
+                'tin'                   => $object->get('tin'),
+                'name'                  => $object->get('name'),
+                'surname'               => $object->get('surname'),
+                'email'                 => $object->get('email')?: strtolower($object->get('email')),
+                'phone'                 => $object->get('phone'),
+                'mobile'                => $object->get('mobile'),
+                'country_id'            => $object->get('country_id'),
+                'territorial_area_1_id' => $object->get('territorial_area_1_id'),
+                'territorial_area_2_id' => $object->get('territorial_area_2_id'),
+                'territorial_area_3_id' => $object->get('territorial_area_3_id'),
+                'cp'                    => $object->get('cp'),
+                'locality'              => $object->get('locality'),
+                'address'               => $object->get('address'),
+                'latitude'              => $object->get('latitude'),
+                'longitude'             => $object->get('longitude'),
+                'favorite'              => $object->has('favorite'),
+            ];
+        }
+
+        return Address::insert($formated);
+    }
+
+    /**
      * Function to update a address
      * @param   array     $object
      * @param   int       $id         old id of address
