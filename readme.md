@@ -29,7 +29,7 @@ php artisan db:seed --class="CrmTableSeeder"
 
 **5 - Execute command to load all updates**
 ```
-php artisan migrate --path=database/migrations/updates
+php artisan migrate --path=vendor/syscover/pulsar-crm/src/database/migrations/updates
 ```
 
 **6 - To use auth properties, include this arrays in config/auth.php**
