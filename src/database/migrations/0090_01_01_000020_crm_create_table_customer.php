@@ -21,7 +21,7 @@ class CrmCreateTableCustomer extends Migration {
                 $table->string('lang_id', 2)->nullable();
                 $table->string('remember_token')->nullable();
                 $table->integer('group_id')->unsigned();
-                $table->timestamp('date');
+                $table->timestamp('date')->default(DB::raw('CURRENT_TIMESTAMP'));
                 $table->string('company')->nullable();
                 $table->string('tin')->nullable();
                 $table->tinyInteger('gender_id')->nullable();
