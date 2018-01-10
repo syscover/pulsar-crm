@@ -5,10 +5,17 @@
 | GROUPS
 |----------------------------------
 */
-Route::get('api/v1/crm/group',                                       ['as' => 'crmGroup',                          'uses' => 'Syscover\Crm\Controllers\GroupController@index']);
-Route::get('api/v1/crm/group/{id}',                                  ['as' => 'showCrmGroup',                      'uses' => 'Syscover\Crm\Controllers\GroupController@show']);
-Route::post('api/v1/crm/group',                                      ['as' => 'storeCrmGroup',                     'uses' => 'Syscover\Crm\Controllers\GroupController@store']);
-Route::post('api/v1/crm/group/search',                               ['as' => 'searchCrmGroup',                    'uses' => 'Syscover\Crm\Controllers\GroupController@search']);
-Route::put('api/v1/crm/group/{id}',                                  ['as' => 'updateCrmGroup',                    'uses' => 'Syscover\Crm\Controllers\GroupController@update']);
-Route::delete('api/v1/crm/group/{id}',                               ['as' => 'destroyCrmGroup',                   'uses' => 'Syscover\Crm\Controllers\GroupController@destroy']);
+Route::get('api/v1/crm/group',                  'Syscover\Crm\Controllers\GroupController@index')->name('pulsar.crm.group.index');
+Route::get('api/v1/crm/group/{id}',             'Syscover\Crm\Controllers\GroupController@show')->name('pulsar.crm.group.show');
+Route::post('api/v1/crm/group',                 'Syscover\Crm\Controllers\GroupController@store')->name('pulsar.crm.group.store');
+Route::post('api/v1/crm/group/search',          'Syscover\Crm\Controllers\GroupController@search')->name('pulsar.crm.group.search');
+Route::put('api/v1/crm/group/{id}',             'Syscover\Crm\Controllers\GroupController@update')->name('pulsar.crm.group.update');
+Route::delete('api/v1/crm/group/{id}',          'Syscover\Crm\Controllers\GroupController@destroy')->name('pulsar.crm.group.destroy');
+
+/*
+|----------------------------------
+| CUSTOMER
+|----------------------------------
+*/
+Route::post('api/v1/crm/customer/has_user',     'Syscover\Crm\Controllers\GroupController@search')->name('pulsar.crm.customer.has_user')->middleware('web');
 

@@ -10,10 +10,11 @@ class CustomerController extends CoreController
     protected $model = Customer::class;
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created customer.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
     public function store(Request $request)
     {
@@ -24,11 +25,12 @@ class CustomerController extends CoreController
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified customer.
      *
-     * @param   \Illuminate\Http\Request  $request
-     * @param   int     $id
-     * @return  \Illuminate\Http\JsonResponse
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
     public function update(Request $request, $id)
     {
@@ -36,5 +38,15 @@ class CustomerController extends CoreController
         $response['data']   = CustomerService::update($request->all(), $id);
 
         return response()->json($response);
+    }
+
+    public function hasUser(Request $request)
+    {
+        $n = Customer::where('user', 'like', $request->input('user'))->count();
+
+        return response()->json([
+            'status'    => 'success',
+            'hasUser'   => $n > 0
+        ]);
     }
 }
