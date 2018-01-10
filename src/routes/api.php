@@ -17,5 +17,5 @@ Route::delete('api/v1/crm/group/{id}',          'Syscover\Crm\Controllers\GroupC
 | CUSTOMER
 |----------------------------------
 */
-Route::post('api/v1/crm/customer/has_user',     'Syscover\Crm\Controllers\GroupController@hasUser')->name('pulsar.crm.customer.has_user')->middleware('web');
+Route::post('api/v1/crm/customer/has_user',     'Syscover\Crm\Controllers\CustomerController@hasUser')->name('pulsar.crm.customer.has_user')->middleware('web');
 
