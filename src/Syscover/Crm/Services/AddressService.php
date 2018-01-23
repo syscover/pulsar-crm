@@ -46,7 +46,6 @@ class AddressService
      */
     public static function update($object, $id)
     {
-        if(empty($object['id'])) throw new \Exception('You have to indicate a id address');
         if(isset($object['favorite'])) Address::where('type_id', $object->get('type_id'))->update(['favorite' => false]);
 
         Address::where('id', $id)->update(AddressService::builder($object));
