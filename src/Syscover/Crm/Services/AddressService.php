@@ -6,24 +6,21 @@ class AddressService
 {
     /**
      * Function to create a address
-     * @param   array                           $object
+     *
+     * @param   array $object
      * @return  \Syscover\Crm\Models\Customer
      * @throws  \Exception
      */
     public static function create($object)
     {
-        if(isset($object['email']))
-            $object['email'] = strtolower($object['email']);
+        if(isset($object['favorite'])) Address::where('type_id', $object['type_id'])->update(['favorite' => false]);
 
-        if(isset($object['favorite']))
-            Address::where('type_id', $object['type_id'])
-                ->update(['favorite' => false]);
-
-        return Address::create($object);
+        return Address::create(AddressService::builder($object));
     }
 
     /**
      * Function to create a address
+     *
      * @param   array $objects
      * @return  boolean
      */
@@ -33,30 +30,7 @@ class AddressService
         foreach($objects as $object)
         {
             $object     = collect($object);
-
-            $formated[] = [
-                'type_id'               => $object->get('type_id'),
-                'customer_id'           => $object->get('customer_id'),
-                'alias'                 => $object->get('alias'),
-                'lang_id'               => $object->get('lang_id'),
-                'company'               => $object->get('company'),
-                'tin'                   => $object->get('tin'),
-                'name'                  => $object->get('name'),
-                'surname'               => $object->get('surname'),
-                'email'                 => $object->get('email')?: strtolower($object->get('email')),
-                'phone'                 => $object->get('phone'),
-                'mobile'                => $object->get('mobile'),
-                'country_id'            => $object->get('country_id'),
-                'territorial_area_1_id' => $object->get('territorial_area_1_id'),
-                'territorial_area_2_id' => $object->get('territorial_area_2_id'),
-                'territorial_area_3_id' => $object->get('territorial_area_3_id'),
-                'cp'                    => $object->get('cp'),
-                'locality'              => $object->get('locality'),
-                'address'               => $object->get('address'),
-                'latitude'              => $object->get('latitude'),
-                'longitude'             => $object->get('longitude'),
-                'favorite'              => $object->has('favorite'),
-            ];
+            $formated[] = AddressService::builder($object);
         }
 
         return Address::insert($formated);
@@ -64,6 +38,7 @@ class AddressService
 
     /**
      * Function to update a address
+     *
      * @param   array     $object
      * @param   int       $id         old id of address
      * @return  \Syscover\Crm\Models\Customer
@@ -71,43 +46,41 @@ class AddressService
      */
     public static function update($object, $id)
     {
-        if(empty($object['id']))
-            throw new \Exception('You have to indicate a id address');
+        if(empty($object['id'])) throw new \Exception('You have to indicate a id address');
+        if(isset($object['favorite'])) Address::where('type_id', $object->get('type_id'))->update(['favorite' => false]);
 
-        if(isset($object['email']))
-            $object['email'] = strtolower($object['email']);
-
-        $object = collect($object);
-
-        if($object->has('favorite'))
-            Address::where('type_id', $object->get('type_id'))
-                ->update(['favorite' => false]);
-
-        Address::where('id', $id)
-            ->update([
-                'type_id'               => $object->get('type_id'),
-                'customer_id'           => $object->get('customer_id'),
-                'alias'                 => $object->get('alias'),
-                'lang_id'               => $object->get('lang_id'),
-                'company'               => $object->get('company'),
-                'tin'                   => $object->get('tin'),
-                'name'                  => $object->get('name'),
-                'surname'               => $object->get('surname'),
-                'email'                 => $object->get('email'),
-                'phone'                 => $object->get('phone'),
-                'mobile'                => $object->get('mobile'),
-                'country_id'            => $object->get('country_id'),
-                'territorial_area_1_id' => $object->get('territorial_area_1_id'),
-                'territorial_area_2_id' => $object->get('territorial_area_2_id'),
-                'territorial_area_3_id' => $object->get('territorial_area_3_id'),
-                'cp'                    => $object->get('cp'),
-                'locality'              => $object->get('locality'),
-                'address'               => $object->get('address'),
-                'latitude'              => $object->get('latitude'),
-                'longitude'             => $object->get('longitude'),
-                'favorite'              => $object->has('favorite'),
-            ]);
+        Address::where('id', $id)->update(AddressService::builder($object));
 
         return Address::builder()->find($id);
+    }
+
+    private static function builder($object)
+    {
+        $object = collect($object);
+        $data = [];
+
+        if($object->has('type_id')) $data['type_id'] = $object->get('type_id');
+        if($object->has('customer_id')) $data['customer_id'] = $object->get('customer_id');
+        if($object->has('alias')) $data['alias'] = $object->get('alias');
+        if($object->has('lang_id')) $data['lang_id'] = $object->get('lang_id');
+        if($object->has('company')) $data['company'] = $object->get('company');
+        if($object->has('tin')) $data['tin'] = $object->get('tin');
+        if($object->has('name')) $data['name'] = $object->get('name');
+        if($object->has('surname')) $data['surname'] = $object->get('surname');
+        if($object->has('email')) $data['email'] = strtolower($object->get('email'));
+        if($object->has('phone')) $data['phone'] = $object->get('phone');
+        if($object->has('mobile')) $data['mobile'] = $object->get('mobile');
+        if($object->has('country_id')) $data['country_id'] = $object->get('country_id');
+        if($object->has('territorial_area_1_id')) $data['territorial_area_1_id'] = $object->get('territorial_area_1_id');
+        if($object->has('territorial_area_2_id')) $data['territorial_area_2_id'] = $object->get('territorial_area_2_id');
+        if($object->has('territorial_area_3_id')) $data['territorial_area_3_id'] = $object->get('territorial_area_3_id');
+        if($object->has('cp')) $data['cp'] = $object->get('cp');
+        if($object->has('locality')) $data['locality'] = $object->get('locality');
+        if($object->has('address')) $data['address'] = $object->get('address');
+        if($object->has('latitude')) $data['latitude'] = $object->get('latitude');
+        if($object->has('longitude')) $data['longitude'] = $object->get('longitude');
+        if($object->has('favorite')) $data['favorite'] = $object->has('favorite');
+
+        return $data;
     }
 }

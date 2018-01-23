@@ -14,6 +14,13 @@ Route::delete('api/v1/crm/group/{id}',          'Syscover\Crm\Controllers\GroupC
 
 /*
 |----------------------------------
+| ADDRESS
+|----------------------------------
+*/
+Route::put('api/v1/crm/address/{id}',           'Syscover\Crm\Controllers\AddressController@update')->name('pulsar.crm.address.update');
+
+/*
+|----------------------------------
 | CUSTOMER
 |----------------------------------
 */
