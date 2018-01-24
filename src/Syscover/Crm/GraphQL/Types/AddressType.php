@@ -86,7 +86,7 @@ class AddressType extends GraphQLType
             ],
             'zip' => [
                 'type' => Type::string(),
-                'description' => 'The zip of address'
+                'description' => 'The ZIP of address'
             ],
             'locality' => [
                 'type' => Type::string(),

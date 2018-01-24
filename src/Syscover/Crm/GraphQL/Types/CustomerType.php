@@ -120,7 +120,7 @@ class CustomerType extends GraphQLType
             ],
             'zip' => [
                 'type' => Type::string(),
-                'description' => 'The zip of customer'
+                'description' => 'The ZIP of customer'
             ],
             'locality' => [
                 'type' => Type::string(),
