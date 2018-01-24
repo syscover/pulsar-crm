@@ -118,9 +118,9 @@ class CustomerType extends GraphQLType
                 'type' => Type::string(),
                 'description' => 'The territorial area 3 id of customer'
             ],
-            'cp' => [
+            'zip' => [
                 'type' => Type::string(),
-                'description' => 'The cp of customer'
+                'description' => 'The zip of customer'
             ],
             'locality' => [
                 'type' => Type::string(),

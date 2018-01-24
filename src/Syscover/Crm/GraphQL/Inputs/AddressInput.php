@@ -82,9 +82,9 @@ class AddressInput extends GraphQLType
                 'type' => Type::string(),
                 'description' => 'The territorial area 3 id of address'
             ],
-            'cp' => [
+            'zip' => [
                 'type' => Type::string(),
-                'description' => 'The cp of address'
+                'description' => 'The zip of address'
             ],
             'locality' => [
                 'type' => Type::string(),

@@ -32,7 +32,7 @@ class CustomerService
     public static function update($object, $id)
     {
         Customer::where('id', $id)->update(CustomerService::builder($object));
-        $customer = Customer::builder()->find($object->get('id'));
+        $customer = Customer::builder()->find($id);
 
         if($customer === null) throw new \Exception('You have to indicate an id of a existing customer');
 
