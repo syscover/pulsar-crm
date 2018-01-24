@@ -12,7 +12,7 @@ class TypeService
      */
     public static function create($object)
     {
-        return Type::create($object);
+        return Type::create(TypeService::builder($object));
     }
 
     /**
@@ -24,14 +24,18 @@ class TypeService
      */
     public static function update($object, $id)
     {
+        Type::where('id', $id)->update(TypeService::builder($object));
+
+        return Type::builder()->find($id);
+    }
+
+    private static function builder($object)
+    {
         $object = collect($object);
+        $data = [];
 
-        Type::where('id', $id)
-            ->update([
-                'name' => $object->get('name')
-            ]);
+        if($object->has('name'))    $data['name'] = $object->get('name');
 
-        return Type::builder()
-            ->find($object->get('id'));
+        return $data;
     }
 }

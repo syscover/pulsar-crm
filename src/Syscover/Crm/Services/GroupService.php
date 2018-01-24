@@ -12,7 +12,7 @@ class GroupService
      */
     public static function create($object)
     {
-        return Group::create($object);
+        return Group::create(GroupService::builder($object));
     }
 
     /**
@@ -24,14 +24,18 @@ class GroupService
      */
     public static function update($object, $id)
     {
+        Group::where('id', $id)->update(GroupService::builder($object));
+
+        return Group::builder()->find($id);
+    }
+
+    private static function builder($object)
+    {
         $object = collect($object);
+        $data = [];
 
-        Group::where('id', $id)
-            ->update([
-                'name' => $object->get('name')
-            ]);
+        if($object->has('name'))    $data['name'] = $object->get('name');
 
-        return Group::builder()
-            ->find($object->get('id'));
+        return $data;
     }
 }
