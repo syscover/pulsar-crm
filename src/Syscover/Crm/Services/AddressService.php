@@ -46,10 +46,10 @@ class AddressService
      */
     public static function update($object, $id)
     {
-        if(isset($object['favorite']) && $object['favorite'] === true)
+        if(isset($object['favorite']) && isset($object['customer_id']) && $object['favorite'] === true)
         {
             if(! isset($object['type_id'])) throw new \Exception('You must define type_id property');
-            Address::where('type_id', $object['type_id'])->update(['favorite' => false]);
+            Address::where('type_id', $object['type_id'])->where('customer_id', $object['customer_id'])->update(['favorite' => false]);
         }
 
         Address::where('id', $id)->update(AddressService::builder($object));
