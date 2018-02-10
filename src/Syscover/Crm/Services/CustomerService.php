@@ -15,9 +15,9 @@ class CustomerService
      */
     public static function create($object)
     {
-        if(empty($object['email']))     throw new \Exception('You have to define a email field to record a user');
-        if(empty($object['user']))      throw new \Exception('You have to define a user field to record a user');
-        if(empty($object['password']))  throw new \Exception('You have to define a password field to record a user');
+        if(empty($object['email']))     throw new \Exception('You have to define a email field to create a user');
+        if(empty($object['user']))      throw new \Exception('You have to define a user field to create a user');
+        if(empty($object['password']))  throw new \Exception('You have to define a password field to create a user');
 
         return Customer::create(CustomerService::builder($object));
     }
