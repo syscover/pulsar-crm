@@ -11,7 +11,7 @@ class AddressService
      * @return  \Syscover\Crm\Models\Customer
      * @throws  \Exception
      */
-    public static function create($object)
+    public static function create(array $object)
     {
         if(isset($object['favorite'])) Address::where('type_id', $object['type_id'])->update(['favorite' => false]);
 
@@ -22,14 +22,13 @@ class AddressService
      * Function to create a address
      *
      * @param   array $objects
-     * @return  \Syscover\Crm\Models\Address
+     * @return  bool
      */
-    public static function insert($objects)
+    public static function insert(array $objects)
     {
         $addresses = [];
         foreach($objects as $object)
         {
-            $object     = collect($object);
             $addresses[] = AddressService::builder($object);
         }
 
@@ -44,7 +43,7 @@ class AddressService
      * @return  \Syscover\Crm\Models\Address
      * @throws  \Exception
      */
-    public static function update($object, $id)
+    public static function update(array $object, int $id)
     {
         if(isset($object['favorite']) && isset($object['customer_id']) && $object['favorite'] === true)
         {
@@ -57,7 +56,7 @@ class AddressService
         return Address::builder()->find($id);
     }
 
-    private static function builder($object)
+    private static function builder(array $object)
     {
         $object = collect($object);
         $data = [];
