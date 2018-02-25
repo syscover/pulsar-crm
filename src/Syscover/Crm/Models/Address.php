@@ -1,8 +1,8 @@
 <?php namespace Syscover\Crm\Models;
 
-use Syscover\Admin\Traits\Geolocalizable;
 use Syscover\Core\Models\CoreModel;
 use Illuminate\Support\Facades\Validator;
+use Syscover\Admin\Traits\Geolocalizable;
 
 /**
  * Class Address
@@ -16,11 +16,11 @@ class Address extends CoreModel
 	protected $table        = 'crm_address';
     protected $fillable     = ['id', 'type_id', 'customer_id', 'alias', 'lang_id', 'company', 'tin', 'name', 'surname', 'email', 'phone', 'mobile', 'country_id', 'territorial_area_1_id', 'territorial_area_2_id', 'territorial_area_3_id', 'zip', 'locality', 'address', 'latitude', 'longitude', 'favorite', 'data'];
     protected $casts        = [
-        'data'      => 'array'
+        'data' => 'array'
     ];
     private static $rules   = [
-        'type_id'  => 'required',
-        'customer_id'  => 'required'
+        'type_id' => 'required',
+        'customer_id' => 'required'
     ];
     public $with = ['type'];
         

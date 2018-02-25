@@ -29,7 +29,7 @@ class AddressService
         $addresses = [];
         foreach($objects as $object)
         {
-            $addresses[] = AddressService::builder($object);
+            $addresses[] = AddressService::builder($object)->toArray();
         }
 
         return Address::insert($addresses);
