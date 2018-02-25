@@ -80,6 +80,27 @@ class Customer extends CoreModel implements
     }
 
     /**
+     * Create array object with values to create a order
+     *
+     * @return array
+     */
+    public function getDataOrder()
+    {
+        $data                       = [];
+        $data['customer_id']        = $this->id;
+        $data['customer_group_id']  = $this->group_id;
+        $data['customer_company']   = $this->company;
+        $data['customer_tin']       = $this->tin;
+        $data['customer_name']      = $this->name;
+        $data['customer_surname']   = $this->surname;
+        $data['customer_email']     = $this->email;
+        $data['customer_mobile']    = $this->mobile;
+        $data['customer_phone']     = $this->phone;
+
+        return $data;
+    }
+
+    /**
      * Send the password reset notification.
      *
      * @param  string  $token
