@@ -46,7 +46,7 @@ class CustomerService
 
         if($object->has('lang_id'))                 $data['lang_id'] = $object->get('lang_id');
         if($object->has('group_id'))                $data['group_id'] = $object->get('group_id');
-        if($object->has('date'))                    $data['date'] = (new Carbon($object->get('date'), config('app.timezone')))->toDateTimeString();
+        if($object->has('date'))                    $data['date'] = date_time_string($object->get('date'));
         if($object->has('company'))                 $data['company'] = $object->get('company');
         if($object->has('tin'))                     $data['tin'] = $object->get('tin');
         if($object->has('gender'))                  $data['gender'] = $object->get('gender');
@@ -55,7 +55,7 @@ class CustomerService
         if($object->has('name'))                    $data['name'] = $object->get('name');
         if($object->has('surname'))                 $data['surname'] = $object->get('surname');
         if($object->has('avatar'))                  $data['avatar'] = $object->get('avatar');
-        if($object->has('birthDate'))               $data['birthDate'] = (new Carbon($object->get('birthDate'), config('app.timezone')))->toDateString();
+        if($object->has('birthDate'))               $data['birthDate'] = date_time_string($object->get('birthDate'));
         if($object->has('email'))                   $data['email'] = strtolower($object->get('email'));
         if($object->has('phone'))                   $data['phone'] = $object->get('phone');
         if($object->has('mobile'))                  $data['mobile'] = $object->get('mobile');
