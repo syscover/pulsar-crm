@@ -4,26 +4,15 @@ use Syscover\Crm\Models\Group;
 
 class GroupService
 {
-    /**
-     * Function to create a group
-     * @param   array                           $object
-     * @return  \Syscover\Crm\Models\Group
-     * @throws  \Exception
-     */
     public static function create($object)
     {
+        GroupService::check($object);
         return Group::create(GroupService::builder($object));
     }
 
-    /**
-     * Function to update a group
-     * @param   array     $object
-     * @param   int       $id         old id of group
-     * @return  \Syscover\Crm\Models\Group
-     * @throws  \Exception
-     */
     public static function update($object, $id)
     {
+        GroupService::check($object);
         Group::where('id', $id)->update(GroupService::builder($object));
 
         return Group::builder()->find($id);
@@ -34,8 +23,13 @@ class GroupService
         $object = collect($object);
         $data = [];
 
-        if($object->has('name'))    $data['name'] = $object->get('name');
+        if($object->has('name')) $data['name'] = $object->get('name');
 
         return $data;
+    }
+
+    private static function check($object)
+    {
+        if(empty($object['name'])) throw new \Exception('You have to define a name field to create a group');
     }
 }
