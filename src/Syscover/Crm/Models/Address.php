@@ -36,6 +36,6 @@ class Address extends CoreModel
 
     public function type()
     {
-        return $this->belongsTo(Type::class, 'type_id');
+        return $this->belongsTo(AddressType::class, 'type_id');
     }
 }

@@ -4,13 +4,13 @@ use Syscover\Core\Models\CoreModel;
 use Illuminate\Support\Facades\Validator;
 
 /**
- * Class Type
+ * Class AddressType
  * @package Syscover\Crm\Models
  */
 
-class Type extends CoreModel
+class AddressType extends CoreModel
 {
-	protected $table        = 'crm_type';
+	protected $table        = 'crm_address_type';
     protected $fillable     = ['name'];
     private static $rules   = [
         'name'  => 'required|between:2,255'

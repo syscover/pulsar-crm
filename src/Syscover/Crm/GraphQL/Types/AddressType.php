@@ -23,7 +23,7 @@ class AddressType extends GraphQLType
                 'description' => 'Type of address'
             ],
             'type' => [
-                'type' => Type::nonNull(GraphQL::type('CrmType')),
+                'type' => Type::nonNull(GraphQL::type('CrmAddressType')),
                 'description' => 'Type that belong this address'
             ],
             'customer_id' => [

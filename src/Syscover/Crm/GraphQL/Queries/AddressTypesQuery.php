@@ -4,18 +4,18 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
 use Syscover\Core\Services\SQLService;
-use Syscover\Crm\Models\Type as CrmModelType;
+use Syscover\Crm\Models\AddressType;
 
-class TypeQuery extends Query
+class AddressTypesQuery extends Query
 {
     protected $attributes = [
-        'name'          => 'TypeQuery',
-        'description'   => 'Query to get type'
+        'name'          => 'AddressTypesQuery',
+        'description'   => 'Query to get address types'
     ];
 
     public function type()
     {
-        return GraphQL::type('CrmType');
+        return Type::listOf(GraphQL::type('CrmAddressType'));
     }
 
     public function args()
@@ -31,8 +31,14 @@ class TypeQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(CrmModelType::builder(), $args['sql']);
+        $query = AddressType::builder();
 
-        return $query->first();
+        if(isset($args['sql']))
+        {
+            $query = SQLService::getQueryFiltered($query, $args['sql']);
+            $query = SQLService::getQueryOrderedAndLimited($query, $args['sql']);
+        }
+
+        return $query->get();
     }
 }

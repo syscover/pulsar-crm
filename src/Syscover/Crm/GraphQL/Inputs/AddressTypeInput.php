@@ -3,11 +3,11 @@
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
 
-class TypeInput extends GraphQLType {
+class AddressTypeInput extends GraphQLType {
 
     protected $attributes = [
-        'name'          => 'TypeInput',
-        'description'   => 'Type that address can to belong'
+        'name'          => 'AddressTypeInput',
+        'description'   => 'Address type that address can to belong'
     ];
 
     protected $inputObject = true;
@@ -17,11 +17,11 @@ class TypeInput extends GraphQLType {
         return [
             'id' => [
                 'type' => Type::int(),
-                'description' => 'The id of type'
+                'description' => 'The id of address type'
             ],
             'name' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'The name of type'
+                'description' => 'The name of address type'
             ]
         ];
     }

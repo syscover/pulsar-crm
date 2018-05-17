@@ -14,9 +14,9 @@ class CrmGraphQLServiceProvider
         GraphQL::addType(\Syscover\Crm\GraphQL\Types\CustomerType::class, 'CrmCustomer');
         GraphQL::addType(\Syscover\Crm\GraphQL\Inputs\CustomerInput::class, 'CrmCustomerInput');
 
-        // TYPE
-        GraphQL::addType(\Syscover\Crm\GraphQL\Types\TypeType::class, 'CrmType');
-        GraphQL::addType(\Syscover\Crm\GraphQL\Inputs\TypeInput::class, 'CrmTypeInput');
+        // ADDRESS TYPE
+        GraphQL::addType(\Syscover\Crm\GraphQL\Types\AddressTypeType::class, 'CrmAddressType');
+        GraphQL::addType(\Syscover\Crm\GraphQL\Inputs\AddressTypeInput::class, 'CrmAddressTypeInput');
 
         // ADDRESS
         GraphQL::addType(\Syscover\Crm\GraphQL\Types\AddressType::class, 'CrmAddress');
@@ -37,10 +37,10 @@ class CrmGraphQLServiceProvider
                 'crmCustomers'              => \Syscover\Crm\GraphQL\Queries\CustomersQuery::class,
                 'crmCustomer'               => \Syscover\Crm\GraphQL\Queries\CustomerQuery::class,
 
-                // TYPE
-                'crmTypesPagination'        => \Syscover\Crm\GraphQL\Queries\TypesPaginationQuery::class,
-                'crmTypes'                  => \Syscover\Crm\GraphQL\Queries\TypesQuery::class,
-                'crmType'                   => \Syscover\Crm\GraphQL\Queries\TypeQuery::class,
+                // ADDRESS TYPE
+                'crmAddressTypesPagination' => \Syscover\Crm\GraphQL\Queries\AddressTypesPaginationQuery::class,
+                'crmAddressTypes'           => \Syscover\Crm\GraphQL\Queries\AddressTypesQuery::class,
+                'crmAddressType'            => \Syscover\Crm\GraphQL\Queries\AddressTypeQuery::class,
 
                 // ADDRESS
                 'crmAddressesPagination'    => \Syscover\Crm\GraphQL\Queries\AddressesPaginationQuery::class,
@@ -58,10 +58,10 @@ class CrmGraphQLServiceProvider
                 'crmUpdateCustomer'         => \Syscover\Crm\GraphQL\Mutations\UpdateCustomerMutation::class,
                 'crmDeleteCustomer'         => \Syscover\Crm\GraphQL\Mutations\DeleteCustomerMutation::class,
 
-                // TYPE
-                'crmAddType'                => \Syscover\Crm\GraphQL\Mutations\AddTypeMutation::class,
-                'crmUpdateType'             => \Syscover\Crm\GraphQL\Mutations\UpdateTypeMutation::class,
-                'crmDeleteType'             => \Syscover\Crm\GraphQL\Mutations\DeleteTypeMutation::class,
+                // ADDRESS TYPE
+                'crmAddAddressType'       => \Syscover\Crm\GraphQL\Mutations\AddAddressTypeMutation::class,
+                'crmUpdateAddressType'      => \Syscover\Crm\GraphQL\Mutations\UpdateAddressTypeMutation::class,
+                'crmDeleteAddressType'      => \Syscover\Crm\GraphQL\Mutations\DeleteAddressTypeMutation::class,
 
                 // ADDRESS
                 'crmAddAddress'             => \Syscover\Crm\GraphQL\Mutations\AddAddressMutation::class,

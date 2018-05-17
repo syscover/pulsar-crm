@@ -1,13 +1,13 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Syscover\Crm\Models\Type;
+use Syscover\Crm\Models\AddressType;
 
-class CrmTypeSeeder extends Seeder
+class CrmAddressTypeSeeder extends Seeder
 {
     public function run()
     {
-        Type::insert([
+        AddressType::insert([
             ['id' => 1, 'name' => 'Shipping'],
             ['id' => 2, 'name' => 'Billing']
         ]);

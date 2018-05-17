@@ -6,30 +6,31 @@ class GroupService
 {
     public static function create($object)
     {
-        GroupService::check($object);
+        GroupService::checkCreate($object);
         return Group::create(GroupService::builder($object));
     }
 
-    public static function update($object, $id)
+    public static function update($object)
     {
-        GroupService::check($object);
-        Group::where('id', $id)->update(GroupService::builder($object));
+        GroupService::checkUpdate($object);
+        Group::where('id', $object['id'])->update(GroupService::builder($object));
 
-        return Group::builder()->find($id);
+        return Group::builder()->find($object['id']);
     }
 
     private static function builder($object)
     {
         $object = collect($object);
-        $data = [];
-
-        if($object->has('name')) $data['name'] = $object->get('name');
-
-        return $data;
+        return $object->only('name')->toArray();
     }
 
-    private static function check($object)
+    private static function checkCreate($object)
     {
         if(empty($object['name'])) throw new \Exception('You have to define a name field to create a group');
+    }
+
+    private static function checkUpdate($object)
+    {
+        if(empty($object['id']))      throw new \Exception('You have to define a id field to update a group');
     }
 }

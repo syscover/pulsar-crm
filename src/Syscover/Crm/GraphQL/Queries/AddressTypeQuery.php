@@ -4,18 +4,18 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
 use Syscover\Core\Services\SQLService;
-use Syscover\Crm\Models\Type as CrmModelType;
+use Syscover\Crm\Models\AddressType as CrmModelType;
 
-class TypesPaginationQuery extends Query
+class AddressTypeQuery extends Query
 {
     protected $attributes = [
-        'name'          => 'TypesPaginationQuery',
-        'description'   => 'Query to get types list.'
+        'name'          => 'AddressTypeQuery',
+        'description'   => 'Query to get address type'
     ];
 
     public function type()
     {
-        return GraphQL::type('CoreObjectPagination');
+        return GraphQL::type('CrmAddressType');
     }
 
     public function args()
@@ -33,16 +33,6 @@ class TypesPaginationQuery extends Query
     {
         $query = SQLService::getQueryFiltered(CrmModelType::builder(), $args['sql']);
 
-        // count records filtered
-        $filtered = $query->count();
-
-        // N total records
-        $total = SQLService::countPaginateTotalRecords(CrmModelType::builder());
-
-        return (Object) [
-            'total'     => $total,
-            'filtered'  => $filtered,
-            'query'     => $query
-        ];
+        return $query->first();
     }
 }

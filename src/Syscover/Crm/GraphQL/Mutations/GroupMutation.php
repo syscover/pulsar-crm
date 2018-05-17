@@ -47,7 +47,7 @@ class UpdateGroupMutation extends GroupMutation
 
     public function resolve($root, $args)
     {
-        return GroupService::update($args['object'], $args['object']['id']);
+        return GroupService::update($args['object']);
     }
 }
 
