@@ -7,71 +7,72 @@ use Syscover\Crm\Models\Customer;
 
 class CustomerService
 {
-    /**
-     * Function to create a customer
-     * @param   array                           $object
-     * @return  \Syscover\Crm\Models\Customer
-     * @throws  \Exception
-     */
     public static function create($object)
     {
-        if(empty($object['email']))     throw new \Exception('You have to define a email field to create a user');
-        if(empty($object['user']))      throw new \Exception('You have to define a user field to create a user');
-        if(empty($object['password']))  throw new \Exception('You have to define a password field to create a user');
-
+        CustomerService::checkCreate($object);
         return Customer::create(CustomerService::builder($object));
     }
 
-    /**
-     * Function to update a customer
-     * @param   array     $object
-     * @param   int       $id         old id of customer
-     * @return  \Syscover\Crm\Models\Customer
-     * @throws  \Exception
-     */
-    public static function update($object, $id)
+    public static function update($object)
     {
-        Customer::where('id', $id)->update(CustomerService::builder($object));
-        $customer = Customer::builder()->find($id);
+        CustomerService::checkUpdate($object);
+        Customer::where('id', $object['id'])->update(CustomerService::builder($object));
 
-        if($customer === null) throw new \Exception('You have to indicate an id of a existing customer');
-
-        return $customer;
+        return  Customer::builder()->find($object['id']);
     }
 
     private static function builder($object)
     {
         $object = collect($object);
-        $data = [];
+        return $object->only(
+            'lang_id',
+            'group_id',
+            'date',
+            'company',
+            'tin',
+            'gender_id',
+            'treatment_id',
+            'state_id',
+            'name',
+            'surname',
+            'avatar',
+            'birth_date',
+            'email',
+            'phone',
+            'mobile',
+            'user',
+            'password',
+            'active',
+            'confirmed',
+            'country_id',
+            'territorial_area_1_id',
+            'territorial_area_2_id',
+            'territorial_area_3_id',
+            'zip',
+            'locality',
+            'address',
+            'latitude',
+            'longitude',
+            'field_group_id',
+            'data'
+        )->toArray();
 
-        if($object->has('lang_id'))                 $data['lang_id'] = $object->get('lang_id');
-        if($object->has('group_id'))                $data['group_id'] = $object->get('group_id');
-        if($object->has('date'))                    $data['date'] = date_time_string($object->get('date'));
-        if($object->has('company'))                 $data['company'] = $object->get('company');
-        if($object->has('tin'))                     $data['tin'] = $object->get('tin');
-        if($object->has('gender'))                  $data['gender'] = $object->get('gender');
-        if($object->has('treatment_id'))            $data['treatment_id'] = $object->get('treatment_id');
-        if($object->has('state_id'))                $data['state_id'] = $object->get('state_id');
-        if($object->has('name'))                    $data['name'] = $object->get('name');
-        if($object->has('surname'))                 $data['surname'] = $object->get('surname');
-        if($object->has('avatar'))                  $data['avatar'] = $object->get('avatar');
-        if($object->has('birthDate'))               $data['birthDate'] = date_time_string($object->get('birthDate'));
-        if($object->has('email'))                   $data['email'] = strtolower($object->get('email'));
-        if($object->has('phone'))                   $data['phone'] = $object->get('phone');
-        if($object->has('mobile'))                  $data['mobile'] = $object->get('mobile');
-        if($object->has('user'))                    $data['user'] = $object->get('user');
-        if($object->has('password'))                $data['password'] = Hash::make($object->get('password'));
-        if($object->has('active'))                  $data['active'] = $object->get('active');
-        if($object->has('country_id'))              $data['country_id'] = $object->get('country_id');
-        if($object->has('territorial_area_1_id'))   $data['territorial_area_1_id'] = $object->get('territorial_area_1_id');
-        if($object->has('territorial_area_2_id'))   $data['territorial_area_2_id'] = $object->get('territorial_area_2_id');
-        if($object->has('territorial_area_3_id'))   $data['territorial_area_3_id'] = $object->get('territorial_area_3_id');
-        if($object->has('zip'))                     $data['zip'] = $object->get('zip');
-        if($object->has('locality'))                $data['locality'] = $object->get('locality');
-        if($object->has('address'))                 $data['address'] = $object->get('address');
-        if($object->has('latitude'))                $data['latitude'] = $object->get('latitude');
-        if($object->has('longitude'))               $data['longitude'] = $object->get('longitude');
 
-        return $data;
+        // if($object->has('date'))                    $data['date'] = date_time_string($object->get('date'));
+        // if($object->has('birthDate'))               $data['birthDate'] = date_time_string($object->get('birthDate'));
+        // if($object->has('email'))                   $data['email'] = strtolower($object->get('email'));
+        // if($object->has('password'))                $data['password'] = Hash::make($object->get('password'));
+    }
+
+    private static function checkCreate($object)
+    {
+        if(empty($object['email']))     throw new \Exception('You have to define a email field to create a customer');
+        if(empty($object['user']))      throw new \Exception('You have to define a user field to create a customer');
+        if(empty($object['password']))  throw new \Exception('You have to define a password field to create a customer');
+    }
+
+    private static function checkUpdate($object)
+    {
+        if(empty($object['id']))      throw new \Exception('You have to define a id field to update a customer');
     }
 }

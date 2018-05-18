@@ -47,7 +47,7 @@ class UpdateCustomerMutation extends CustomerMutation
 
     public function resolve($root, $args)
     {
-        return CustomerService::update($args['object'], $args['object']['id']);
+        return CustomerService::update($args['object']);
     }
 }
 
