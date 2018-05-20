@@ -65,7 +65,7 @@ class CrmCreateTableCustomer extends Migration {
 
                 $table->foreign('group_id', 'fk01_crm_customer')
                     ->references('id')
-                    ->on('crm_group')
+                    ->on('crm_customer_group')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
                 $table->foreign('country_id', 'fk02_crm_customer')

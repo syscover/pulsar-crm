@@ -1,13 +1,13 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Syscover\Crm\Models\Group;
+use Syscover\Crm\Models\CustomerGroup;
 
-class CrmGroupSeeder extends Seeder
+class CrmCustomerGroupSeeder extends Seeder
 {
     public function run()
     {
-        Group::insert([
+        CustomerGroup::insert([
             ['id' => 1, 'name' => 'Particular customer'],
             ['id' => 2, 'name' => 'European society'],
             ['id' => 3, 'name' => 'No European society'],
@@ -17,5 +17,5 @@ class CrmGroupSeeder extends Seeder
 
 /*
  * Command to run:
- * php artisan db:seed --class="CrmGroupSeeder"
+ * php artisan db:seed --class="CrmCustomerGroupSeeder"
  */

@@ -12,9 +12,9 @@ class CrmCreateTableGroup extends Migration {
      */
     public function up()
     {
-        if (! Schema::hasTable('crm_group'))
+        if (! Schema::hasTable('crm_customer_group'))
         {
-            Schema::create('crm_group', function (Blueprint $table) {
+            Schema::create('crm_customer_group', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 
                 $table->increments('id');
@@ -33,6 +33,6 @@ class CrmCreateTableGroup extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('crm_group');
+        Schema::dropIfExists('crm_customer_group');
     }
 }

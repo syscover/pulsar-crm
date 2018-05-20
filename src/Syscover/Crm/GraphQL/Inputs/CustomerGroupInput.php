@@ -3,11 +3,11 @@
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
 
-class GroupInput extends GraphQLType
+class CustomerGroupInput extends GraphQLType
 {
     protected $attributes = [
-        'name'          => 'GroupInput',
-        'description'   => 'Group that user can to belong'
+        'name'          => 'CustomerGroupInput',
+        'description'   => 'customer group that user can to belong'
     ];
 
     protected $inputObject = true;

@@ -14,7 +14,6 @@ class CustomerController extends CoreController
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
-     * @throws \Exception
      */
     public function store(Request $request)
     {
@@ -28,14 +27,12 @@ class CustomerController extends CoreController
      * Update the specified customer.
      *
      * @param Request $request
-     * @param $id
      * @return \Illuminate\Http\JsonResponse
-     * @throws \Exception
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $response['status'] = "success";
-        $response['data']   = CustomerService::update($request->all(), $id);
+        $response['data']   = CustomerService::update($request->all());
 
         return response()->json($response);
     }

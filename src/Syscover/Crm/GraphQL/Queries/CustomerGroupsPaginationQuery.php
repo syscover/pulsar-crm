@@ -4,13 +4,13 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
 use Syscover\Core\Services\SQLService;
-use Syscover\Crm\Models\Group;
+use Syscover\Crm\Models\CustomerGroup;
 
-class GroupsPaginationQuery extends Query
+class CustomerGroupsPaginationQuery extends Query
 {
     protected $attributes = [
-        'name'          => 'GroupsPaginationQuery',
-        'description'   => 'Query to get groups list.'
+        'name'          => 'CustomerGroupsPaginationQuery',
+        'description'   => 'Query to get customer groups list.'
     ];
 
     public function type()
@@ -31,13 +31,13 @@ class GroupsPaginationQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(Group::builder(), $args['sql']);
+        $query = SQLService::getQueryFiltered(CustomerGroup::builder(), $args['sql']);
 
         // count records filtered
         $filtered = $query->count();
 
         // N total records
-        $total = SQLService::countPaginateTotalRecords(Group::builder());
+        $total = SQLService::countPaginateTotalRecords(CustomerGroup::builder());
 
         return (Object) [
             'total'     => $total,

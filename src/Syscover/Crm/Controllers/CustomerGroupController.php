@@ -2,12 +2,12 @@
 
 use Illuminate\Http\Request;
 use Syscover\Core\Controllers\CoreController;
-use Syscover\Crm\Models\Group;
-use Syscover\Crm\Services\GroupService;
+use Syscover\Crm\Models\CustomerGroup;
+use Syscover\Crm\Services\CustomerGroupService;
 
-class GroupController extends CoreController
+class CustomerGroupController extends CoreController
 {
-    protected $model = Group::class;
+    protected $model = CustomerGroup::class;
 
     /**
      * Store a newly created resource in storage.
@@ -18,7 +18,7 @@ class GroupController extends CoreController
     public function store(Request $request)
     {
         $response['status'] = "success";
-        $response['data']   = GroupService::create($request->all());
+        $response['data']   = CustomerGroupService::create($request->all());
 
         return response()->json($response);
     }
@@ -27,13 +27,12 @@ class GroupController extends CoreController
      * Update the specified resource in storage.
      *
      * @param   \Illuminate\Http\Request  $request
-     * @param   int     $id
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $response['status'] = "success";
-        $response['data']   = GroupService::update($request->all(), $id);
+        $response['data']   = CustomerGroupService::update($request->all());
 
         return response()->json($response);
     }

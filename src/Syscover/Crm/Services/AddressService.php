@@ -39,11 +39,10 @@ class AddressService
      * Function to update a address
      *
      * @param   array     $object
-     * @param   int       $id         id of address
      * @return  \Syscover\Crm\Models\Address
      * @throws  \Exception
      */
-    public static function update(array $object, int $id)
+    public static function update(array $object)
     {
         if(isset($object['favorite']) && isset($object['customer_id']) && $object['favorite'] === true)
         {
@@ -51,9 +50,9 @@ class AddressService
             Address::where('type_id', $object['type_id'])->where('customer_id', $object['customer_id'])->update(['favorite' => false]);
         }
 
-        Address::where('id', $id)->update(AddressService::builder($object));
+        Address::where('id', $object['id'])->update(AddressService::builder($object));
 
-        return Address::builder()->find($id);
+        return Address::builder()->find($object['id']);
     }
 
     private static function builder(array $object)

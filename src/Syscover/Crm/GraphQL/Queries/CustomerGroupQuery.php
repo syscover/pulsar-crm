@@ -4,18 +4,18 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
 use Syscover\Core\Services\SQLService;
-use Syscover\Crm\Models\Group;
+use Syscover\Crm\Models\CustomerGroup;
 
-class GroupsQuery extends Query
+class CustomerGroupQuery extends Query
 {
     protected $attributes = [
-        'name'          => 'GroupsQuery',
-        'description'   => 'Query to get groups'
+        'name'          => 'CustomerGroupQuery',
+        'description'   => 'Query to get customer group'
     ];
 
     public function type()
     {
-        return Type::listOf(GraphQL::type('CrmGroup'));
+        return GraphQL::type('CrmCustomerGroup');
     }
 
     public function args()
@@ -31,14 +31,8 @@ class GroupsQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = Group::builder();
+        $query = SQLService::getQueryFiltered(CustomerGroup::builder(), $args['sql']);
 
-        if(isset($args['sql']))
-        {
-            $query = SQLService::getQueryFiltered($query, $args['sql']);
-            $query = SQLService::getQueryOrderedAndLimited($query, $args['sql']);
-        }
-
-        return $query->get();
+        return $query->first();
     }
 }
