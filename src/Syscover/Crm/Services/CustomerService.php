@@ -1,7 +1,5 @@
 <?php namespace Syscover\Crm\Services;
 
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Syscover\Crm\Models\Customer;
 
@@ -24,7 +22,7 @@ class CustomerService
     private static function builder($object)
     {
         $object = collect($object);
-        return $object->only(
+        $object = $object->only(
             'lang_id',
             'group_id',
             'date',
@@ -55,13 +53,17 @@ class CustomerService
             'longitude',
             'field_group_id',
             'data'
-        )->toArray();
+        );
 
+        if($object->has('password'))
+        {
+            if($object->get('password')) $object['password'] = Hash::make($object->get('password')); else $object = $object->forget('password');
+        }
+        if($object->has('email')) $data['email'] = strtolower($object->get('email'));
 
+        return $object->toArray();
         // if($object->has('date'))                    $data['date'] = date_time_string($object->get('date'));
         // if($object->has('birthDate'))               $data['birthDate'] = date_time_string($object->get('birthDate'));
-        // if($object->has('email'))                   $data['email'] = strtolower($object->get('email'));
-        // if($object->has('password'))                $data['password'] = Hash::make($object->get('password'));
     }
 
     private static function checkCreate($object)
