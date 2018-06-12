@@ -54,7 +54,7 @@ class CrmCreateTableAddress extends Migration {
 
                 $table->foreign('type_id', 'fk01_crm_address')
                     ->references('id')
-                    ->on('crm_type')
+                    ->on('crm_address_type')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
                 $table->foreign('customer_id', 'fk02_crm_address')
