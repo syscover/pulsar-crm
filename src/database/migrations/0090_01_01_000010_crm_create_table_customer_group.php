@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrmCreateTableGroup extends Migration {
+class CrmCreateTableCustomerGroup extends Migration {
 
     /**
      * Run the migrations.
