@@ -59,11 +59,11 @@ class CustomerService
         {
             if($object->get('password')) $object['password'] = Hash::make($object->get('password')); else $object = $object->forget('password');
         }
-        if($object->has('email')) $data['email'] = strtolower($object->get('email'));
+        if($object->has('email'))       $data['email'] = strtolower($object->get('email'));
+        if($object->has('date'))        $object['date'] = date_time_string($object->get('date'));
+        if($object->has('birth_date'))  $object['birth_date'] = date_time_string($object->get('birth_date'));
 
         return $object->toArray();
-        // if($object->has('date'))                    $data['date'] = date_time_string($object->get('date'));
-        // if($object->has('birthDate'))               $data['birthDate'] = date_time_string($object->get('birthDate'));
     }
 
     private static function checkCreate($object)
