@@ -41,8 +41,8 @@ class CrmCreateTableAddress extends Migration {
                 $table->string('zip')->nullable();
                 $table->string('locality')->nullable();
                 $table->string('address')->nullable();
-                $table->decimal('latitude', 11, 7)->nullable();
-                $table->decimal('longitude', 11, 7)->nullable();
+                $table->decimal('latitude', 17, 14)->nullable();
+                $table->decimal('longitude', 17, 14)->nullable();
 
                 $table->boolean('favorite')->default(false);
 

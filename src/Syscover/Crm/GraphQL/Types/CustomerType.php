@@ -131,11 +131,11 @@ class CustomerType extends GraphQLType
                 'description' => 'Address of customer'
             ],
             'latitude' => [
-                'type' => Type::string(),
+                'type' => Type::float(),
                 'description' => 'Latitude of customer'
             ],
             'longitude' => [
-                'type' => Type::string(),
+                'type' => Type::float(),
                 'description' => 'Longitude of customer'
             ],
 

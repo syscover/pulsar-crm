@@ -20,16 +20,16 @@ class CrmUpdateV4 extends Migration
         if(Schema::hasTable('crm_customer'))
         {
             Schema::table('crm_customer', function (Blueprint $table) {
-                $table->decimal('latitude', 11, 7)->nullable()->change();
-                $table->decimal('longitude', 11, 7)->nullable()->change();
+                $table->decimal('latitude', 17, 14)->nullable()->change();
+                $table->decimal('longitude', 17, 14)->nullable()->change();
             });
         }
 
         if(Schema::hasTable('crm_address'))
         {
             Schema::table('crm_address', function (Blueprint $table) {
-                $table->decimal('latitude', 11, 7)->nullable()->change();
-                $table->decimal('longitude', 11, 7)->nullable()->change();
+                $table->decimal('latitude', 17, 14)->nullable()->change();
+                $table->decimal('longitude', 17, 14)->nullable()->change();
             });
         }
 	}
