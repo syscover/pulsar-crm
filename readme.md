@@ -73,3 +73,17 @@ Use crm guard to get auth properties
 ```
 auth('crm')
 ```
+
+**Options**
+
+You can register ResetLinkEmailSent event in app/Providers/EventServiceProvider.php to custom the notification. 
+Don't forget to create App\Listeners\SendResetLinkEmail listener.
+```
+protected $listen = [
+    ...
+    'Syscover\Crm\Events\ResetLinkEmailSent' => [
+        'App\Listeners\SendResetLinkEmail'
+    ],
+    ...
+];
+```

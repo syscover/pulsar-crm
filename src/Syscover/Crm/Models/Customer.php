@@ -11,7 +11,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use App\Http\Notifications\ResetPassword as ResetPasswordNotification;
-use Syscover\Crm\Events\SendResetLinkEmail;
+use Syscover\Crm\Events\ResetLinkEmailSent;
 
 /**
  * Class Customer
@@ -110,9 +110,9 @@ class Customer extends CoreModel implements
     public function sendPasswordResetNotification($token)
     {
         // Fire event to change comment from public web
-        $res = event(new SendResetLinkEmail($this, $token));
+        $res = event(new ResetLinkEmailSent($this, $token));
 
-        $res;
+        dd($res);
 
         $this->notify(new ResetPasswordNotification($token));
     }

@@ -2,7 +2,7 @@
 
 use Syscover\Crm\Models\Customer;
 
-class SendResetLinkEmail
+class ResetLinkEmailSent
 {
     public $customer;
     public $token;
