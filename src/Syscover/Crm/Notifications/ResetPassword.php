@@ -2,6 +2,7 @@
 
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Route;
 
 class ResetPassword extends Notification
 {
@@ -35,15 +36,25 @@ class ResetPassword extends Notification
 
     /**
      * Build the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
+    public function toMail()
     {
+        if (Route::has('web.show_reset_form-' . user_lang()))
+        {
+            $routeName = 'web.show_reset_form-' . user_lang();
+        }
+        elseif (Route::has('web.show_reset_form'))
+        {
+            $routeName = 'web.show_reset_form';
+        }
+        else
+        {
+            throw new \Exception('To send the reset password email you must create the route web.show_reset_form or web.show_reset_form-es, depending on whether you have installed the pulsar-navtools package');
+        }
+
         return (new MailMessage)
-            ->line('You are receiving this email because we received a password reset request for your account.')
-            ->action('Reset Password', route('showResetForm-' . user_lang(), ['token' => $this->token]))
-            ->line('If you did not request a password reset, no further action is required.');
+            ->line(__('admin::admin.message_reset_password_notification_01'))
+            ->action(__('admin::admin.reset_password'), route($routeName, ['token' => $this->token]))
+            ->line(__('admin::admin.message_reset_password_notification_02'));
     }
 }
