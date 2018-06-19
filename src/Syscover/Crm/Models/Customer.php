@@ -1,7 +1,5 @@
 <?php namespace Syscover\Crm\Models;
 
-use Syscover\Admin\Traits\Translatable;
-use Syscover\Core\Models\CoreModel;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Authenticatable;
@@ -10,7 +8,9 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use App\Http\Notifications\ResetPassword as ResetPasswordNotification;
+use Syscover\Crm\Notifications\ResetPassword as ResetPasswordNotification;
+use Syscover\Admin\Traits\Translatable;
+use Syscover\Core\Models\CoreModel;
 use Syscover\Crm\Events\ResetLinkEmailSent;
 
 /**
@@ -103,17 +103,15 @@ class Customer extends CoreModel implements
 
     /**
      * Send the password reset notification.
-     *
-     * @param  string  $token
-     * @return void
      */
     public function sendPasswordResetNotification($token)
     {
-        // Fire event to change comment from public web
-        $res = event(new ResetLinkEmailSent($this, $token));
+        // Fire event to throw a custom reset notification
+        $response = event(new ResetLinkEmailSent($this, $token));
 
-        dd($res);
-
-        $this->notify(new ResetPasswordNotification($token));
+        if(! is_array($response) || count($response) === 0)
+        {
+            $this->notify(new ResetPasswordNotification($token));
+        }
     }
 }
