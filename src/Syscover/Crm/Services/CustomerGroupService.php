@@ -21,7 +21,7 @@ class CustomerGroupService
     private static function builder($object)
     {
         $object = collect($object);
-        return $object->only('name')->toArray();
+        return $object->only(['name'])->toArray();
     }
 
     private static function checkCreate($object)
