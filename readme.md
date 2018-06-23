@@ -20,6 +20,10 @@ Syscover\Crm\CrmServiceProvider::class,
 ```
 php artisan vendor:publish --provider="Syscover\Crm\CrmServiceProvider"
 ```
+and
+```
+composer dump-autoload
+```
 
 **3 - And execute migrations and seed database**
 ```
