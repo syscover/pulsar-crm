@@ -29,11 +29,6 @@ class Address extends CoreModel
         return Validator::make($data, static::$rules);
 	}
 
-    public function scopeBuilder($query)
-    {
-        return $query;
-    }
-
     public function type()
     {
         return $this->belongsTo(AddressType::class, 'type_id');

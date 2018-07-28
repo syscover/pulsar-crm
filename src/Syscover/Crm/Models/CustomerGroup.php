@@ -20,9 +20,4 @@ class CustomerGroup extends CoreModel
     {
         return Validator::make($data, static::$rules);
 	}
-
-    public function scopeBuilder($query)
-    {
-        return $query;
-    }
 }

@@ -3,7 +3,6 @@
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
-use Syscover\Core\Services\SQLService;
 use Syscover\Crm\Models\CustomerGroup;
 
 class CustomerGroupsPaginationQuery extends Query
@@ -31,18 +30,9 @@ class CustomerGroupsPaginationQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(CustomerGroup::builder(), $args['sql']);
-
-        // count records filtered
-        $filtered = $query->count();
-
-        // N total records
-        $total = SQLService::countPaginateTotalRecords(CustomerGroup::builder());
-
         return (Object) [
-            'total'     => $total,
-            'filtered'  => $filtered,
-            'query'     => $query
+            // set setEagerLoads to clean eager loads to use FOUND_ROWS() MySql Function
+            'query' => CustomerGroup::calculateFoundRows()->builder()
         ];
     }
 }
