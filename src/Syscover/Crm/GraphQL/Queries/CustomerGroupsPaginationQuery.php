@@ -32,7 +32,7 @@ class CustomerGroupsPaginationQuery extends Query
     {
         return (Object) [
             // set setEagerLoads to clean eager loads to use FOUND_ROWS() MySql Function
-            'query' => CustomerGroup::calculateFoundRows()->builder()
+            'query' => CustomerGroup::calculateFoundRows()->builder()->setEagerLoads([])
         ];
     }
 }

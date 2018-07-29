@@ -32,7 +32,7 @@ class AddressesPaginationQuery extends Query
     {
         return (Object) [
             // set setEagerLoads to clean eager loads to use FOUND_ROWS() MySql Function
-            'query' => Address::calculateFoundRows()->builder()
+            'query' => Address::calculateFoundRows()->builder()->setEagerLoads([])
         ];
     }
 }
