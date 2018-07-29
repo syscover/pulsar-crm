@@ -1,5 +1,6 @@
 <?php namespace Syscover\Crm\Models;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Authenticatable;
