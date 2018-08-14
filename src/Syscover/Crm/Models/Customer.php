@@ -39,8 +39,9 @@ class Customer extends CoreModel implements
         'group',
         'addresses'
     ];
-
-    public $class_tax = null; // custom properties
+    protected $appends = [
+        'tax_rules' // \Syscover\Market\Model\TaxRule[]
+    ];
 
     private static $rules   = [
         'name'      => 'required|between:2,255',
@@ -85,6 +86,16 @@ class Customer extends CoreModel implements
     {
         // don't use object because it can be used in crm module without market module
         return $this->hasMany('Syscover\Market\Models\Order', 'customer_id');
+    }
+
+    public function class_taxes()
+    {
+        return $this->hasManyThrough('Syscover\Market\Models\CustomerClassTax', 'Syscover\Market\Models\CustomerGroupCustomerClassTax', 'customer_group_id', 'id', 'group_id', 'customer_class_tax_id');
+    }
+
+    public function getTaxRulesAttribute()
+    {
+        return $this->attributes['tax_rules'];
     }
 
     /**

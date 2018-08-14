@@ -23,7 +23,7 @@ class CrmAuthenticate
             }
 			else
             {
-				return redirect()->guest(route('getLogin-' . user_lang()));
+				return redirect()->guest(route('web.get_login-' . user_lang()));
             }
 		}
 
