@@ -28,6 +28,9 @@ class CrmServiceProvider extends ServiceProvider
             __DIR__ . '/../../config/pulsar-crm.php' => config_path('pulsar-crm.php'),
         ]);
 
+        // register translations
+        $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'crm');
+
         // register GraphQL types and schema
         CrmGraphQLServiceProvider::bootGraphQLTypes();
         CrmGraphQLServiceProvider::bootGraphQLSchema();
