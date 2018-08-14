@@ -95,7 +95,7 @@ class Customer extends CoreModel implements
 
     public function getTaxRulesAttribute()
     {
-        return $this->attributes['tax_rules'];
+        return isset($this->attributes['tax_rules']) ? $this->attributes['tax_rules'] : null;
     }
 
     /**
