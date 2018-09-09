@@ -35,7 +35,7 @@ class Customer extends CoreModel implements
         'active'    => 'boolean',
         'data'      => 'array'
     ];
-    public $with            = [
+    protected $with         = [
         'group',
         'addresses'
     ];
