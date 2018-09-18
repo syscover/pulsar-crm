@@ -5,12 +5,12 @@
 | GROUPS
 |----------------------------------
 */
-Route::get('api/v1/crm/group',                  'Syscover\Crm\Controllers\GroupController@index')->name('pulsar.crm.group.index');
-Route::get('api/v1/crm/group/{id}',             'Syscover\Crm\Controllers\GroupController@show')->name('pulsar.crm.group.show');
-Route::post('api/v1/crm/group',                 'Syscover\Crm\Controllers\GroupController@store')->name('pulsar.crm.group.store');
-Route::post('api/v1/crm/group/search',          'Syscover\Crm\Controllers\GroupController@search')->name('pulsar.crm.group.search');
-Route::put('api/v1/crm/group/{id}',             'Syscover\Crm\Controllers\GroupController@update')->name('pulsar.crm.group.update');
-Route::delete('api/v1/crm/group/{id}',          'Syscover\Crm\Controllers\GroupController@destroy')->name('pulsar.crm.group.destroy');
+//Route::get('api/v1/crm/group',                  'Syscover\Crm\Controllers\GroupController@index')->name('api.crm_group.index');
+//Route::get('api/v1/crm/group/{id}',             'Syscover\Crm\Controllers\GroupController@show')->name('api.crm_group.show');
+//Route::post('api/v1/crm/group',                 'Syscover\Crm\Controllers\GroupController@store')->name('api.crm_group.store');
+//Route::post('api/v1/crm/group/search',          'Syscover\Crm\Controllers\GroupController@search')->name('api.crm_group.search');
+//Route::put('api/v1/crm/group/{id}',             'Syscover\Crm\Controllers\GroupController@update')->name('api.crm_group.update');
+//Route::delete('api/v1/crm/group/{id}',          'Syscover\Crm\Controllers\GroupController@destroy')->name('api.crm_group.destroy');
 
 /*
 |----------------------------------
