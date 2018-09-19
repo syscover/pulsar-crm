@@ -30,10 +30,6 @@ class CrmServiceProvider extends ServiceProvider
 
         // register translations
         $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'crm');
-
-        // register GraphQL types and schema
-        CrmGraphQLServiceProvider::bootGraphQLTypes();
-        CrmGraphQLServiceProvider::bootGraphQLSchema();
     }
 
     /**
