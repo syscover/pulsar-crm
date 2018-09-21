@@ -65,12 +65,10 @@ Inside passwords array
 
 you can change email crmPasswordBroker, to custom appearance.
 
-**6 - Add CRM middleware to nest protected routes**
-In app/Http/Kernel.php add to $routeMiddleware array
+**6 - You can nest protected routes under this middleware**
 ```
-'pulsar.crm.auth' => \Syscover\Crm\Middleware\CrmAuthenticate::class,
+'pulsar.auth:crm'
 ```
-You can nest protected routes under this middleware.
 
 **7 - How get auth properties**
 Use crm guard to get auth properties
