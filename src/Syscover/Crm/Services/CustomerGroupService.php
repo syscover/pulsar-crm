@@ -6,14 +6,14 @@ class CustomerGroupService
 {
     public static function create($object)
     {
-        CustomerGroupService::checkCreate($object);
-        return CustomerGroup::create(CustomerGroupService::builder($object));
+        self::checkCreate($object);
+        return CustomerGroup::create(self::builder($object));
     }
 
     public static function update($object)
     {
-        CustomerGroupService::checkUpdate($object);
-        CustomerGroup::where('id', $object['id'])->update(CustomerGroupService::builder($object));
+        self::checkUpdate($object);
+        CustomerGroup::where('id', $object['id'])->update(self::builder($object));
 
         return CustomerGroup::builder()->find($object['id']);
     }

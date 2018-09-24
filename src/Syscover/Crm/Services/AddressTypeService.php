@@ -6,14 +6,14 @@ class AddressTypeService
 {
     public static function create($object)
     {
-        AddressTypeService::checkCreate($object);
-        return AddressType::create(AddressTypeService::builder($object));
+        self::checkCreate($object);
+        return AddressType::create(self::builder($object));
     }
 
     public static function update($object)
     {
-        AddressTypeService::checkUpdate($object);
-        AddressType::where('id', $object['id'])->update(AddressTypeService::builder($object));
+        self::checkUpdate($object);
+        AddressType::where('id', $object['id'])->update(self::builder($object));
 
         return AddressType::builder()->find($object['id']);
     }

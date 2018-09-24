@@ -4,44 +4,25 @@ use Syscover\Crm\Models\Address;
 
 class AddressService
 {
-    /**
-     * Function to create a address
-     *
-     * @param   array $object
-     * @return  \Syscover\Crm\Models\Customer
-     * @throws  \Exception
-     */
+
     public static function create(array $object)
     {
         if(isset($object['favorite'])) Address::where('type_id', $object['type_id'])->update(['favorite' => false]);
 
-        return Address::create(AddressService::builder($object));
+        return Address::create(self::builder($object));
     }
 
-    /**
-     * Function to create a address
-     *
-     * @param   array $objects
-     * @return  bool
-     */
     public static function insert(array $objects)
     {
         $addresses = [];
         foreach($objects as $object)
         {
-            $addresses[] = AddressService::builder($object);
+            $addresses[] = self::builder($object);
         }
 
         return Address::insert($addresses);
     }
 
-    /**
-     * Function to update a address
-     *
-     * @param   array     $object
-     * @return  \Syscover\Crm\Models\Address
-     * @throws  \Exception
-     */
     public static function update(array $object)
     {
         if(isset($object['favorite']) && isset($object['customer_id']) && $object['favorite'] === true)
@@ -50,7 +31,7 @@ class AddressService
             Address::where('type_id', $object['type_id'])->where('customer_id', $object['customer_id'])->update(['favorite' => false]);
         }
 
-        Address::where('id', $object['id'])->update(AddressService::builder($object));
+        Address::where('id', $object['id'])->update(self::builder($object));
 
         return Address::builder()->find($object['id']);
     }

@@ -7,14 +7,14 @@ class CustomerService
 {
     public static function create($object)
     {
-        CustomerService::checkCreate($object);
-        return Customer::create(CustomerService::builder($object));
+        self::checkCreate($object);
+        return Customer::create(self::builder($object));
     }
 
     public static function update($object)
     {
-        CustomerService::checkUpdate($object);
-        Customer::where('id', $object['id'])->update(CustomerService::builder($object));
+        self::checkUpdate($object);
+        Customer::where('id', $object['id'])->update(self::builder($object));
 
         return  Customer::builder()->find($object['id']);
     }
@@ -62,7 +62,6 @@ class CustomerService
                 'data'
             ]);
         }
-
 
         if($object->has('password'))
         {
