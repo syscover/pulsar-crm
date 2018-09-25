@@ -40,7 +40,8 @@ class Customer extends CoreModel implements
         'addresses'
     ];
     protected $appends = [
-        'tax_rules' // \Syscover\Market\Model\TaxRule[]
+        'tax_rules', // \Syscover\Market\Model\TaxRule[]
+        'class_tax'
     ];
 
     private static $rules   = [
