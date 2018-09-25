@@ -72,6 +72,11 @@ class Customer extends CoreModel implements
         return $query->select(DB::raw('SQL_CALC_FOUND_ROWS crm_customer.id'));
     }
 
+    public function getClassTaxAttribute()
+    {
+        return $this->class_taxes->first();
+    }
+
     public function group()
     {
         return $this->belongsTo(CustomerGroup::class, 'group_id');
