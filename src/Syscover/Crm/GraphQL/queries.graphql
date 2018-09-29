@@ -1,12 +1,4 @@
-# Address type
-""" Query to get address type list """
-crmAddressTypes(sql:[CoreSQLInput]): [CrmAddressType!]! @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressTypeGraphQLService@get")
-""" Query to get address """
-crmAddressType(sql:[CoreSQLInput]): CrmAddressType @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressTypeGraphQLService@find")
-""" Query to get addresses paginated """
-crmAddressTypesPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressTypeGraphQLService@paginate")
-
-# Addresses
+# Address
 """ Query to get addresses list """
 crmAddresses(sql:[CoreSQLInput]): [CrmAddress!]! @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressGraphQLService@get")
 """ Query to get address """
@@ -14,18 +6,26 @@ crmAddress(sql:[CoreSQLInput]): CrmAddress @field(resolver: "Syscover\\Crm\\Grap
 """ Query to get addresses paginated """
 crmAddressesPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressGraphQLService@paginate")
 
-# Customer groups
-""" Query to get customer groups list """
-crmCustomerGroups(sql:[CoreSQLInput]): [CrmCustomerGroup!]! @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGroupGraphQLService@get")
-""" Query to get customer group """
-crmCustomerGroup(sql:[CoreSQLInput]): CrmCustomerGroup @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGroupGraphQLService@find")
-""" Query to get customer groups paginated """
-crmCustomerGroupsPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGroupGraphQLService@paginate")
+# AddressType
+""" Query to get address type list """
+crmAddressTypes(sql:[CoreSQLInput]): [CrmAddressType!]! @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressTypeGraphQLService@get")
+""" Query to get address """
+crmAddressType(sql:[CoreSQLInput]): CrmAddressType @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressTypeGraphQLService@find")
+""" Query to get addresses paginated """
+crmAddressTypesPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressTypeGraphQLService@paginate")
 
-# Customers
+# Customer
 """ Query to get customer list """
 crmCustomers(sql:[CoreSQLInput]): [CrmCustomer!]! @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGraphQLService@get")
 """ Query to get customers """
 crmCustomer(sql:[CoreSQLInput]): CrmCustomer @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGraphQLService@find")
 """ Query to get customers paginated """
 crmCustomersPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGraphQLService@paginate")
+
+# CustomerGroup
+""" Query to get customer groups list """
+crmCustomerGroups(sql:[CoreSQLInput]): [CrmCustomerGroup!]! @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGroupGraphQLService@get")
+""" Query to get customer group """
+crmCustomerGroup(sql:[CoreSQLInput]): CrmCustomerGroup @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGroupGraphQLService@find")
+""" Query to get customer groups paginated """
+crmCustomerGroupsPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGroupGraphQLService@paginate")

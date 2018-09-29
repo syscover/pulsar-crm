@@ -1,0 +1,9 @@
+input CrmAddressTypeInput {
+    id: Int
+    name: String!
+}
+
+input CrmCustomerGroupInput {
+    id: Int
+    name: String!
+}

@@ -1,0 +1,9 @@
+# AddressType
+crmCreateAddressType(object: CrmAddressTypeInput!): CrmAddressType @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressTypeGraphQLService@create")
+crmUpdateAddressType(object: CrmAddressTypeInput!): CrmAddressType @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressTypeGraphQLService@update")
+crmDeleteAddressType(id:Int!): CrmAddressType @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressTypeGraphQLService@delete")
+
+# CustomerGroup
+crmCreateCustomerGroup(object: CrmCustomerGroupInput!): CrmCustomerGroup @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGroupGraphQLService@create")
+crmUpdateCustomerGroup(object: CrmCustomerGroupInput!): CrmCustomerGroup @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGroupGraphQLService@update")
+crmDeleteCustomerGroup(id:Int!): CrmCustomerGroup @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGroupGraphQLService@delete")

@@ -1,4 +1,30 @@
-type CrmCustomerGroup {
+type CrmAddress {
+    id: Int!
+    type_id: Int!
+    type: CrmAddressType!
+    customer_id: Int!
+    alias: String
+    lang_id: String
+    company: String
+    tin: String
+    name: String
+    surname: String
+    email: String
+    phone: String
+    mobile: String
+    country_id: String
+    territorial_area_1_id: String
+    territorial_area_2_id: String
+    territorial_area_3_id: String
+    zip: String
+    locality: String
+    address: String
+    latitude: String
+    longitude: String
+    data: Object
+}
+
+type CrmAddressType {
     id: Int!
     name: String!
 }
@@ -39,33 +65,7 @@ type CrmCustomer {
     data: Object
 }
 
-type CrmAddressType {
+type CrmCustomerGroup {
     id: Int!
     name: String!
-}
-
-type CrmAddress {
-    id: Int!
-    type_id: Int!
-    type: CrmAddressType!
-    customer_id: Int!
-    alias: String
-    lang_id: String
-    company: String
-    tin: String
-    name: String
-    surname: String
-    email: String
-    phone: String
-    mobile: String
-    country_id: String
-    territorial_area_1_id: String
-    territorial_area_2_id: String
-    territorial_area_3_id: String
-    zip: String
-    locality: String
-    address: String
-    latitude: String
-    longitude: String
-    data: Object
 }
