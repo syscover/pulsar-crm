@@ -70,7 +70,7 @@ class DeleteAddressTypeMutation extends AddressTypeMutation
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args['id'], AddressType::class);
+        $object = SQLService::deleteRecord($args['id'], AddressType::class);
 
         return $object;
     }

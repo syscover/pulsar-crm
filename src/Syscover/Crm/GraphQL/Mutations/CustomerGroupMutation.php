@@ -70,7 +70,7 @@ class DeleteCustomerGroupMutation extends CustomerGroupMutation
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args['id'], CustomerGroup::class);
+        $object = SQLService::deleteRecord($args['id'], CustomerGroup::class);
 
         return $object;
     }

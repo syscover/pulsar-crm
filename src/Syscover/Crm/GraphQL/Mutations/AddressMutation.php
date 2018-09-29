@@ -70,7 +70,7 @@ class DeleteAddressMutation extends AddressMutation
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args['id'], Address::class);
+        $object = SQLService::deleteRecord($args['id'], Address::class);
 
         return $object;
     }
