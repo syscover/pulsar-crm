@@ -1,6 +1,65 @@
+input CrmAddressInput {
+    id: Int
+    type_id: Int!
+    customer_id: Int!
+    alias: String
+    lang_id: String
+    company: String
+    tin: String
+    name: String
+    surname: String
+    email: String
+    phone: String
+    mobile: String
+    country_id: String
+    territorial_area_1_id: String
+    territorial_area_2_id: String
+    territorial_area_3_id: String
+    zip: String
+    locality: String
+    address: String
+    latitude: String
+    longitude: String
+    data: Object
+}
+
 input CrmAddressTypeInput {
     id: Int
     name: String!
+}
+
+input CrmCustomerInput {
+    id: Int
+    lang_id: String
+    group_id: Int!
+    date: String
+    company: String
+    tin: String
+    gender_id: Int
+    treatment_id: Int
+    state_id: Int
+    name: String
+    surname: String
+    avatar: String
+    birth_date: String
+    email: String!
+    phone: String
+    mobile: String
+    user: String!
+    password: String
+    active: Boolean!
+    confirmed: Boolean
+    country_id: String
+    territorial_area_1_id: String
+    territorial_area_2_id: String
+    territorial_area_3_id: String
+    zip: String
+    locality: String
+    address: String
+    latitude: String
+    longitude: String
+    field_group_id: Int
+    data: Object
 }
 
 input CrmCustomerGroupInput {
