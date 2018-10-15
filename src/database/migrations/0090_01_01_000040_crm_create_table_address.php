@@ -29,7 +29,7 @@ class CrmCreateTableAddress extends Migration {
                 $table->string('tin')->nullable();
                 $table->string('name')->nullable();
                 $table->string('surname')->nullable();
-                $table->string('email', 150)->nullable();;
+                $table->string('email', 150)->nullable();
                 $table->string('phone')->nullable();
                 $table->string('mobile')->nullable();
 
