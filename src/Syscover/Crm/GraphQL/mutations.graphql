@@ -1,19 +1,19 @@
 # AddressType
-crmCreateAddressType(object: CrmAddressTypeInput!): CrmAddressType @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressTypeGraphQLService@create")
-crmUpdateAddressType(object: CrmAddressTypeInput!): CrmAddressType @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressTypeGraphQLService@update")
+crmCreateAddressType(payload: CrmAddressTypeInput!): CrmAddressType @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressTypeGraphQLService@create")
+crmUpdateAddressType(payload: CrmAddressTypeInput!): CrmAddressType @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressTypeGraphQLService@update")
 crmDeleteAddressType(id:Int!): CrmAddressType @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressTypeGraphQLService@delete")
 
 # Address
-crmCreateAddress(object: CrmAddressInput!): CrmAddress @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressGraphQLService@create")
-crmUpdateAddress(object: CrmAddressInput!): CrmAddress @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressGraphQLService@update")
+crmCreateAddress(payload: CrmAddressInput!): CrmAddress @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressGraphQLService@create")
+crmUpdateAddress(payload: CrmAddressInput!): CrmAddress @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressGraphQLService@update")
 crmDeleteAddress(id:Int!): CrmAddress @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\AddressGraphQLService@delete")
 
 # Customer
-crmCreateCustomer(object: CrmCustomerInput!): CrmCustomer @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGraphQLService@create")
-crmUpdateCustomer(object: CrmCustomerInput!): CrmCustomer @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGraphQLService@update")
+crmCreateCustomer(payload: CrmCustomerInput!): CrmCustomer @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGraphQLService@create")
+crmUpdateCustomer(payload: CrmCustomerInput!): CrmCustomer @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGraphQLService@update")
 crmDeleteCustomer(id:Int!): CrmCustomer @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGraphQLService@delete")
 
 # CustomerGroup
-crmCreateCustomerGroup(object: CrmCustomerGroupInput!): CrmCustomerGroup @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGroupGraphQLService@create")
-crmUpdateCustomerGroup(object: CrmCustomerGroupInput!): CrmCustomerGroup @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGroupGraphQLService@update")
+crmCreateCustomerGroup(payload: CrmCustomerGroupInput!): CrmCustomerGroup @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGroupGraphQLService@create")
+crmUpdateCustomerGroup(payload: CrmCustomerGroupInput!): CrmCustomerGroup @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGroupGraphQLService@update")
 crmDeleteCustomerGroup(id:Int!): CrmCustomerGroup @field(resolver: "Syscover\\Crm\\GraphQL\\Services\\CustomerGroupGraphQLService@delete")
