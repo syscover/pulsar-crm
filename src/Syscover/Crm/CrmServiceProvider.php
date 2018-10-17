@@ -29,7 +29,7 @@ class CrmServiceProvider extends ServiceProvider
         ]);
 
         // register translations
-        $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'crm');
+        $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'crm');
     }
 
     /**
