@@ -63,7 +63,6 @@ class CustomerService
             ]);
         }
 
-
         if($object->get('password'))
         {
             $object['password'] = Hash::make($object->get('password'));
