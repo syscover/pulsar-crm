@@ -63,20 +63,18 @@ class CustomerService
             ]);
         }
 
-        if($object->has('password'))
+
+        if($object->get('password'))
         {
-            if($object->get('password'))
-            {
-                $object['password'] = Hash::make($object->get('password'));
-            }
-            else
-            {
-                $object = $object->forget('password');
-            }
+            $object['password'] = Hash::make($object->get('password'));
         }
-        if($object->has('email'))       $data['email'] = strtolower($object->get('email'));
-        if($object->has('date'))        $object['date'] = date_time_string($object->get('date'));
-        if($object->has('birth_date'))  $object['birth_date'] = date_time_string($object->get('birth_date'));
+        else
+        {
+            $object = $object->forget('password');
+        }
+        if($object->get('email'))       $data['email'] = strtolower($object->get('email'));
+        if($object->get('date'))        $object['date'] = date_time_string($object->get('date'));
+        if($object->get('birth_date'))  $object['birth_date'] = date_time_string($object->get('birth_date'));
 
         return $object->toArray();
     }
