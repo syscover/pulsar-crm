@@ -67,7 +67,7 @@ you can change email crmPasswordBroker, to custom appearance.
 
 **6 - You can nest protected routes under this middleware**
 ```
-'pulsar.auth:crm'
+'auth:crm'
 ```
 
 **Options**
