@@ -1,7 +1,6 @@
 <?php namespace Syscover\Crm;
 
 use Illuminate\Support\ServiceProvider;
-use Syscover\Crm\GraphQL\CrmGraphQLServiceProvider;
 
 class CrmServiceProvider extends ServiceProvider
 {

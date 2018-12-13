@@ -34,9 +34,4 @@ class Address extends CoreModel
     {
         return $this->belongsTo(AddressType::class, 'type_id');
     }
-
-    public function countries()
-    {
-        return $this->hasMany(Country::class, 'id', 'country_id');
-    }
 }
