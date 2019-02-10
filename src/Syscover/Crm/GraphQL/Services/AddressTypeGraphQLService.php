@@ -6,6 +6,6 @@ use Syscover\Crm\Services\AddressTypeService;
 
 class AddressTypeGraphQLService extends CoreGraphQLService
 {
-    protected $modelClassName = AddressType::class;
+    protected $model = AddressType::class;
     protected $serviceClassName = AddressTypeService::class;
 }

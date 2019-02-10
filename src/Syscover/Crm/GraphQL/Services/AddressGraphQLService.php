@@ -6,6 +6,6 @@ use Syscover\Core\GraphQL\Services\CoreGraphQLService;
 
 class AddressGraphQLService extends CoreGraphQLService
 {
-    protected $modelClassName = Address::class;
+    protected $model = Address::class;
     protected $serviceClassName = AddressService::class;
 }
