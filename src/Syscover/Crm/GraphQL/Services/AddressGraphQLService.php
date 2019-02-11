@@ -7,5 +7,5 @@ use Syscover\Core\GraphQL\Services\CoreGraphQLService;
 class AddressGraphQLService extends CoreGraphQLService
 {
     protected $model = Address::class;
-    protected $serviceClassName = AddressService::class;
+    protected $service = AddressService::class;
 }

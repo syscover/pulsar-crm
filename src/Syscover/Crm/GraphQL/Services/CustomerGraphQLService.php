@@ -7,5 +7,5 @@ use Syscover\Core\GraphQL\Services\CoreGraphQLService;
 class CustomerGraphQLService extends CoreGraphQLService
 {
     protected $model = Customer::class;
-    protected $serviceClassName = CustomerService::class;
+    protected $service = CustomerService::class;
 }
