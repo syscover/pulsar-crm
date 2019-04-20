@@ -4,7 +4,7 @@ type CrmAddress {
     type: CrmAddressType!
     customer_id: Int!
     alias: String
-    lang_id: String
+    lang_id: Int
     company: String
     tin: String
     name: String
@@ -31,7 +31,7 @@ type CrmAddressType {
 
 type CrmCustomer {
     id: Int!
-    lang_id: String
+    lang_id: Int
     group_id: Int!
     group: CrmCustomerGroup!
     date: String

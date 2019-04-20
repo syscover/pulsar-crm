@@ -3,7 +3,7 @@ input CrmAddressInput {
     type_id: Int!
     customer_id: Int!
     alias: String
-    lang_id: String
+    lang_id: Int
     company: String
     tin: String
     name: String
@@ -30,7 +30,7 @@ input CrmAddressTypeInput {
 
 input CrmCustomerInput {
     id: Int
-    lang_id: String
+    lang_id: Int
     group_id: Int!
     date: String
     company: String
