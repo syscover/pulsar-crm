@@ -94,6 +94,17 @@ class Customer extends CoreModel implements
         return $this->hasMany('Syscover\Market\Models\Order', 'customer_id');
     }
 
+    public function articles()
+    {
+        return $this->morphMany(
+            'Syscover\Cms\Models\Article',
+            'author',
+            'author_type',
+            'author_id',
+            'id'
+        );
+    }
+
     public function class_taxes()
     {
         return $this->hasManyThrough('Syscover\Market\Models\CustomerClassTax', 'Syscover\Market\Models\CustomerGroupCustomerClassTax', 'customer_group_id', 'id', 'group_id', 'customer_class_tax_id');

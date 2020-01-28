@@ -53,8 +53,10 @@ class ResetPassword extends Notification
         }
 
         return (new MailMessage)
+            ->greeting(__('admin::pulsar.greeting'))
             ->line(__('admin::pulsar.message_reset_password_notification_01'))
             ->action(__('admin::pulsar.reset_password'), route($routeName, ['token' => $this->token]))
-            ->line(__('admin::pulsar.message_reset_password_notification_02'));
+            ->line(__('admin::pulsar.message_reset_password_notification_02'))
+            ->salutation(__('admin::pulsar.salutation'));
     }
 }
